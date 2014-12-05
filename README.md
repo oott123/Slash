@@ -3,7 +3,7 @@
 Slash is a [atom-shell][atom-shell] based, open source offline documents reader.
 We are devote to change the way of programmers read the documents.
 
-## Need Your Help!
+## Help Us
 
 We Need :
 
@@ -11,7 +11,7 @@ We Need :
  * A icon of Slash the application
  * A group of icons for [entry types][dash-entry-types]
 
-## Features will support:
+## Features Will Support
 
  1. Support Dash .docset
  2. Provide integration APIs via local HTTP
