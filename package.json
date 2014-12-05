@@ -1,0 +1,15 @@
+{
+  "name": "Slash",
+  "version": "0.0.1",
+  "description": "A atom-shell based document reader.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "simple-plist": "0.0.3",
+    "node-sqlite3": "0.0.3"
+  }
+}
