@@ -11,7 +11,7 @@ We Need :
  * A icon of Slash the application
  * A group of icons for [entry types][dash-entry-types]
 
-## Features Will Support
+## Roadmap
 
  1. Support Dash .docset
  2. Provide integration APIs via local HTTP
