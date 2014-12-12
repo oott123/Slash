@@ -1,0 +1,14 @@
+{
+  "name": "slash-browser",
+  "version": "0.0.1",
+  "homepage": "https://github.com/oott123/Slash",
+  "authors": [
+    "oott123 <ip.192.168.1.1@qq.com>"
+  ],
+  "description": "Slash browser dependencies",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "font-awesome": "~4.2.0"
+  }
+}
