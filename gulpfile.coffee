@@ -1,6 +1,5 @@
-sourceDir = 'src'
+sourceDir = 'browser/src'
 destDir = 'browser/assets'
-tempDir = 'gulp-tmp'
 viewsDir = 'browser'
 
 gulp = require 'gulp'
@@ -10,7 +9,7 @@ less = require 'gulp-less'
 coffee = require 'gulp-coffee'
 
 gulp.task 'clean', ->
-    gulp.src([destDir, viewsDir, tempDir]).pipe(clean())
+    gulp.src([destDir, "#{viewsDir}/*.html", tempDir]).pipe(clean())
 
 gulp.task 'html', ->
     gulp.src "#{sourceDir}/jade/**/*.jade"
@@ -20,7 +19,7 @@ gulp.task 'html', ->
 gulp.task 'css', ->
     gulp.src "#{sourceDir}/less/importer.less"
         .pipe less()
-        .pipe gulp.dest("#{tempDir}/")
+        .pipe gulp.dest("#{destDir}/css")
 
 gulp.task 'js', ->
     gulp.src "#{sourceDir}/coffee/**/*.coffee"
@@ -32,7 +31,7 @@ gulp.task 'static', ->
         .pipe gulp.dest("#{destDir}")
 
 gulp.task 'default', ['html', 'static', 'js', 'css'], ->
-    gulp.src(tempDir).pipe(clean()) #清除临时文件
+    # default task
 
 gulp.task 'watch', ['default'], ->
     gulp.watch "#{sourceDir}/coffee/**/*.coffee", ['js']

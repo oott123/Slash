@@ -1,0 +1,53 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+.main-wrapper {
+  height: 100%;
+  width: 100%;
+}
+.sub-wrapper {
+  display: flex;
+}
+.sub-wrapper > .left {
+  width: 300px;
+}
+.sub-wrapper > .right {
+  flex: 1;
+}
+.title-bar {
+  text-align: center;
+  height: 32px;
+  line-height: 32px;
+  background-color: #ccc;
+}
+.title-bar > .search input {
+  width: 90%;
+}
+.title-bar > .nav {
+  display: flex;
+}
+.title-bar > .nav > .button-group {
+  width: 64px;
+}
+.button-group > .button {
+  display: inline-block;
+  width: 50%;
+  background-color: #fff;
+  cursor: pointer;
+  transition: background-color 300ms;
+}
+.button-group > .button:hover {
+  background-color: #fcc;
+}
+.button-group > .button.disabled {
+  background-color: #eee;
+}
+.button-group > .button.disabled:hover {
+  background-color: #eee;
+}
+.title-bar > .nav > .title {
+  flex: 1;
+}
