@@ -4,6 +4,7 @@ html
 		title Slash / Slash
 		meta(charset="utf8")
 		link(rel="stylesheet" href="assets/css/importer.css")
+		link(rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css")
 	body
 		.main-wrapper
 			.title-bar.sub-wrapper
@@ -11,12 +12,16 @@ html
 					input#search(type="text" placeholder="Search" autofocus)
 				.nav.right
 					.button-group.left
-						.forward.button.left &lt;
-						.back.button.right.disabled &gt;
+						.forward.button.left
+							i.fa.fa-angle-left
+						.back.button.right.disabled
+							i.fa.fa-angle-right
 					#doc-title.title Welcome!
 					.button-group.right
-						.popup.button.left P
-						.bookmark.button.right B
+						.bookmark.button.right
+							i.fa.fa-bookmark
+						.bars.button.left
+							i.fa.fa-bars
 			.body.sub-wrapper
 				.index.left
 					ul
