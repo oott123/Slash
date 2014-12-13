@@ -32,6 +32,9 @@ html {
 .title-bar > .nav > .button-group {
   width: 64px;
 }
+.title-bar > .nav > .title {
+  flex: 1;
+}
 .button-group > .button {
   display: inline-block;
   width: 50%;
@@ -42,12 +45,7 @@ html {
 .button-group > .button:hover {
   background-color: #fcc;
 }
-.button-group > .button.disabled {
-  background-color: #eee;
-}
+.button-group > .button.disabled,
 .button-group > .button.disabled:hover {
   background-color: #eee;
-}
-.title-bar > .nav > .title {
-  flex: 1;
 }
