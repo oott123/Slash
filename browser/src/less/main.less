@@ -21,7 +21,7 @@ body, html {
 
 .title-bar {
 	text-align: center;
-	height: 32px;
+	height: 34px;
 	line-height: 32px;
 	background-color: #ccc;
 	> .search input {
@@ -42,14 +42,52 @@ body, html {
 	> .button {
 		display: inline-block;
 		width: 50%;
-		background-color: #fff;
-		cursor: pointer;
-		transition: background-color 300ms;
+		margin-top: 1px;
+		box-sizing: border-box;
+		background: #fff;
+		border: 1px solid #fff;
+		cursor: default;
+		transition: background, border 200ms;
+		&:hover {
+			background: #E5F3FB;
+			border: 1px solid #70C0E7;
+		}
+		&.disabled, &.disabled:hover {
+			background: #ddd;
+			color: #999;
+			border: 1px solid #ddd;
+		}
 	}
-	> .button:hover {
-		background-color: #fcc;
-	}
-	> .button.disabled, > .button.disabled:hover {
-		background-color: #eee;
+}
+
+.sub-wrapper.body {
+	> .index {
+		ul {
+			list-style-type: none;
+			padding: 0;
+			margin: 0 0 0 0;
+			li {
+				cursor: default;
+				box-sizing: border-box;
+				padding-left: 24px;
+				padding-top: 4px;
+				padding-bottom: 4px;
+				border: 1px solid rgba(0,0,0,0);
+				&:hover {
+					background: #E5F3FB;
+					border: 1px solid #70C0E7;
+				}
+				&.active {
+					background: #D1E8FF;
+					border: 1px solid #70C0E7;
+				}
+				&:hover + li.active {
+					border-top-color: rgba(0,0,0,0);
+				}
+				&.active + li:hover {
+					border-top-color: rgba(0,0,0,0);
+				}
+			}
+		}
 	}
 }

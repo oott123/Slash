@@ -19,7 +19,7 @@ html {
 }
 .title-bar {
   text-align: center;
-  height: 32px;
+  height: 34px;
   line-height: 32px;
   background-color: #ccc;
 }
@@ -38,14 +38,47 @@ html {
 .button-group > .button {
   display: inline-block;
   width: 50%;
-  background-color: #fff;
-  cursor: pointer;
-  transition: background-color 300ms;
+  margin-top: 1px;
+  box-sizing: border-box;
+  background: #fff;
+  border: 1px solid #fff;
+  cursor: default;
+  transition: background, border 200ms;
 }
 .button-group > .button:hover {
-  background-color: #fcc;
+  background: #E5F3FB;
+  border: 1px solid #70C0E7;
 }
 .button-group > .button.disabled,
 .button-group > .button.disabled:hover {
-  background-color: #eee;
+  background: #ddd;
+  color: #999;
+  border: 1px solid #ddd;
+}
+.sub-wrapper.body > .index ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 0 0;
+}
+.sub-wrapper.body > .index ul li {
+  cursor: default;
+  box-sizing: border-box;
+  padding-left: 24px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border: 1px solid rgba(0, 0, 0, 0);
+}
+.sub-wrapper.body > .index ul li:hover {
+  background: #E5F3FB;
+  border: 1px solid #70C0E7;
+}
+.sub-wrapper.body > .index ul li.active {
+  background: #D1E8FF;
+  border: 1px solid #70C0E7;
+}
+.sub-wrapper.body > .index ul li:hover + li.active {
+  border-top-color: rgba(0, 0, 0, 0);
+}
+.sub-wrapper.body > .index ul li.active + li:hover {
+  border-top-color: rgba(0, 0, 0, 0);
 }
