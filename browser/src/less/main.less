@@ -11,14 +11,12 @@ body, html {
 
 .sub-wrapper {
 	display: flex;
-}
-
-.sub-wrapper > .left {
-	width: 300px;
-}
-
-.sub-wrapper > .right {
-	flex: 1;
+	> .left {
+		width: 300px;
+	}
+	> .right {
+		  flex: 1;
+	}
 }
 
 .title-bar {
@@ -26,44 +24,32 @@ body, html {
 	height: 32px;
 	line-height: 32px;
 	background-color: #ccc;
+	> .search input {
+		width: 90%;
+	}
+	> .nav {
+		display: flex;
+		> .button-group {
+			width: 64px;
+		}
+		> .title {
+			flex: 1;
+		}
+	}
 }
 
-.title-bar > .search input {
-	width: 90%;
-}
-
-.title-bar > .nav {
-	display: flex;
-}
-
-.title-bar > .nav > .button-group {
-	width: 64px;
-}
-
-.button-group > .button {
-	display: inline-block;
-	width: 50%;
-	background-color: #fff;
-	cursor: pointer;
-	transition: background-color 300ms;
-}
-
-.button-group > .button:hover {
-	background-color: #fcc;
-}
-
-.button-group > .button.disabled {
-	background-color: #eee;
-}
-
-.button-group > .button.disabled:hover {
-	background-color: #eee;
-}
-
-.button-grop > .button.left {
-
-}
-
-.title-bar > .nav > .title {
-	flex: 1;
+.button-group {
+	> .button {
+		display: inline-block;
+		width: 50%;
+		background-color: #fff;
+		cursor: pointer;
+		transition: background-color 300ms;
+	}
+	> .button:hover {
+		background-color: #fcc;
+	}
+	> .button.disabled, > .button.disabled:hover {
+		background-color: #eee;
+	}
 }
