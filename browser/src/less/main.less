@@ -31,6 +31,9 @@ body, html {
 		display: flex;
 		> .button-group {
 			width: 64px;
+			> .bars:hover ul{
+				display: block;
+			}
 		}
 		> .title {
 			flex: 1;
@@ -48,15 +51,7 @@ body, html {
 		border: 1px solid #fff;
 		cursor: default;
 		transition: background, border 200ms;
-		&:hover {
-			background: #E5F3FB;
-			border: 1px solid #70C0E7;
-		}
-		&.disabled, &.disabled:hover {
-			background: #ddd;
-			color: #999;
-			border: 1px solid #ddd;
-		}
+		.menu-item;
 	}
 }
 
@@ -73,10 +68,7 @@ body, html {
 				padding-top: 4px;
 				padding-bottom: 4px;
 				border: 1px solid rgba(0,0,0,0);
-				&:hover {
-					background: #E5F3FB;
-					border: 1px solid #70C0E7;
-				}
+				.menu-item;
 				&.active {
 					background: #D1E8FF;
 					border: 1px solid #70C0E7;

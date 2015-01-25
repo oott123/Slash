@@ -1,3 +1,51 @@
+.menu {
+  background-color: #FBFCFD;
+  margin: 0 2px 2px;
+  padding: 2px;
+  border: 1px solid #DCDDDE;
+  box-shadow: #ddd 1px 1px 1px;
+  text-align: left;
+  list-style: none;
+}
+.menu.popup {
+  display: none;
+  position: fixed;
+  right: 0;
+  width: 150px;
+}
+.menu li {
+  border: 1px solid rgba(0, 0, 0, 0);
+  padding-left: 20px;
+}
+.menu li:hover {
+  background: #E5F3FB;
+  border: 1px solid #70C0E7;
+}
+.menu li.disabled,
+.menu li.disabled:hover {
+  background: #ddd;
+  color: #999;
+  border: 1px solid #ddd;
+}
+.menu li.separate {
+  height: 1px;
+  background-color: #ccc;
+  padding: 0;
+  border: 0;
+}
+.menu-item {
+  border: 1px solid rgba(0, 0, 0, 0);
+}
+.menu-item:hover {
+  background: #E5F3FB;
+  border: 1px solid #70C0E7;
+}
+.menu-item.disabled,
+.menu-item.disabled:hover {
+  background: #ddd;
+  color: #999;
+  border: 1px solid #ddd;
+}
 body,
 html {
   margin: 0;
@@ -32,6 +80,9 @@ html {
 .title-bar > .nav > .button-group {
   width: 64px;
 }
+.title-bar > .nav > .button-group > .bars:hover ul {
+  display: block;
+}
 .title-bar > .nav > .title {
   flex: 1;
 }
@@ -44,6 +95,7 @@ html {
   border: 1px solid #fff;
   cursor: default;
   transition: background, border 200ms;
+  border: 1px solid rgba(0, 0, 0, 0);
 }
 .button-group > .button:hover {
   background: #E5F3FB;
@@ -71,6 +123,12 @@ html {
 .sub-wrapper.body > .index ul li:hover {
   background: #E5F3FB;
   border: 1px solid #70C0E7;
+}
+.sub-wrapper.body > .index ul li.disabled,
+.sub-wrapper.body > .index ul li.disabled:hover {
+  background: #ddd;
+  color: #999;
+  border: 1px solid #ddd;
 }
 .sub-wrapper.body > .index ul li.active {
   background: #D1E8FF;
