@@ -14,12 +14,12 @@ gulp.task 'clean', ->
 gulp.task 'html', ->
     gulp.src "#{sourceDir}/jade/**/*.jade"
         .pipe jade()
-        .pipe gulp.dest(viewsDir)
+        .pipe gulp.dest viewsDir
 
 gulp.task 'css', ->
     gulp.src "#{sourceDir}/less/importer.less"
         .pipe less()
-        .pipe gulp.dest("#{destDir}/css")
+        .pipe gulp.dest "#{destDir}/css"
 
 gulp.task 'js', ->
     gulp.src "#{sourceDir}/coffee/**/*.coffee"
@@ -28,9 +28,19 @@ gulp.task 'js', ->
 
 gulp.task 'static', ->
     gulp.src "#{sourceDir}/static/**"
-        .pipe gulp.dest("#{destDir}")
+        .pipe gulp.dest "#{destDir}"
 
-gulp.task 'default', ['html', 'static', 'js', 'css'], ->
+gulp.task 'index-js', ->
+    gulp.src "index.coffee"
+        .pipe coffee()
+        .pipe gulp.dest ""
+
+gulp.task 'main-js', ['index-js'],->
+    gulp.src "coffee/**/*.coffee"
+        .pipe coffee()
+        .pipe gulp.dest "js/"
+
+gulp.task 'default', ['html', 'static', 'js', 'css', 'index-js'], ->
     # default task
 
 gulp.task 'watch', ['default'], ->
@@ -38,3 +48,5 @@ gulp.task 'watch', ['default'], ->
     gulp.watch "#{sourceDir}/less/**/*.less", ['css']
     gulp.watch "#{sourceDir}/jade/**/*.jade", ['html']
     gulp.watch "#{sourceDir}/static/**/*", ['static']
+    gulp.watch "index.coffee", ['index-js']
+    gulp.watch "coffee/**/*.coffee", ['main-js']
