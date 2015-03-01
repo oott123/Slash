@@ -40,7 +40,7 @@ gulp.task 'main-js', ['index-js'],->
         .pipe coffee()
         .pipe gulp.dest "js/"
 
-gulp.task 'default', ['html', 'static', 'js', 'css', 'index-js'], ->
+gulp.task 'default', ['html', 'static', 'js', 'css', 'main-js'], ->
     # default task
 
 gulp.task 'watch', ['default'], ->
