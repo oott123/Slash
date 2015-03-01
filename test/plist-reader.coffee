@@ -4,7 +4,10 @@ plistReader = require '../coffee/docset/plist-reader'
 
 describe 'Plist reader test', ->
     it 'should parse xml correctly', (done)->
-        r = new plistReader 'Docsets/PHP.docset/Contents/Info.plist'
+        r = new plistReader 'Docsets/NodeJS_(v0.10.32).docset/Contents/Info.plist'
         r.parse().then (data)->
-            console.log data
+            data.should.have.property 'CFBundleIdentifier'
+            data.should.have.property 'CFBundleName'
+            data.should.have.property 'DocSetPlatformFamily'
+            data.should.have.property 'dashIndexFilePath'
             done()
