@@ -7,7 +7,7 @@ ipc = require 'ipc'
 menu = require 'menu'
 tray = require 'tray'
 
-mainWindow = null;
+mainWindow = null
 
 app.on 'ready', ->
     mainWindow = new browserWindow
