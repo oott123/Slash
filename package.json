@@ -19,5 +19,9 @@
     "coffee-script": "~1.8.0",
     "bluebird": "~2.9.13",
     "xml2js": "~0.4.5"
+  },
+  "devDependencies": {
+    "should": "~5.0.1",
+    "mocha": "~2.1.0"
   }
 }
