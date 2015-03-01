@@ -16,6 +16,8 @@
     "gulp": "~3.8.10",
     "gulp-jade": "~0.10.0",
     "gulp-less": "~2.0.1",
-    "coffee-script": "~1.8.0"
+    "coffee-script": "~1.8.0",
+    "bluebird": "~2.9.13",
+    "xml2js": "~0.4.5"
   }
 }
