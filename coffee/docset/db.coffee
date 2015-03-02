@@ -7,22 +7,23 @@ class module.exports
             client: 'sqlite3'
             connection:
                 filename: @fileName
-        @s = @k('searchIndex')
+        @s = ->
+            @k('searchIndex')
     getIndexCount: ->
-        @s.count 'name'
+        @s().count 'name'
         .then (rows)->
             rows[0]['count("name")']
     matchExactly: (key)->
-        @s.where 'name', key
+        @s().where 'name', 'like', key
     matchHead: (string)->
-        @s.where 'name', "#{string}%"
+        @s().where 'name', 'like', "#{string}%"
     matchTail: (string)->
-        @s.where 'name', "%#{string}"
+        @s().where 'name', 'like', "%#{string}"
     matchMiddle: (string)->
-        @s.where 'name', "%#{string}%"
-    matchDeep: (string, depth)->
+        @s().where 'name', 'like', "%#{string}%"
+    matchDeep: (string, depth = 1)->
         match = ''
         for char, i in string
-            match += '%' if i % depth
+            match += '%' unless i % depth
             match += char
-        @s.where 'name', match
+        @s().where 'name', 'like', match

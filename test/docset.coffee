@@ -2,6 +2,7 @@ should = require 'should'
 
 plistReader = require '../coffee/docset/plist-reader'
 db = require '../coffee/docset/db'
+ds = require '../coffee/docset/index'
 fs = require 'fs'
 Promise = require 'bluebird'
 
@@ -42,3 +43,20 @@ describe 'Search index test', ->
                 count.should.above 0
             null
         .then done
+describe 'Docset match test', ->
+    it 'should get some result', (done)->
+        handle = new ds 'f'
+        hasResult= false
+        handle.on 'result', (data)->
+            hasResult = true
+            data.should.have.property 'keyword'
+            data.should.have.property 'method'
+            data.should.have.property 'docset'
+            data.should.have.property('result').which.is.Array
+        handle.on 'finish', ->
+            hasResult.should.eql true
+            done()
+        handle.on 'error', (err)->
+            console.log err
+            throw err
+        handle.match()
