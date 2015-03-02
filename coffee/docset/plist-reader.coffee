@@ -12,4 +12,5 @@ class module.exports
                 reject err if err
                 reslove res.toString()
         .then (plistData)->
-            plist.parse plistData
+            that.plistData = plist.parse plistData
+            that.plistData
