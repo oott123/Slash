@@ -10,7 +10,6 @@
   "license": "MIT",
   "dependencies": {
     "simple-plist": "0.0.3",
-    "node-sqlite3": "0.0.3",
     "gulp-clean": "~0.3.1",
     "gulp-coffee": "~2.2.0",
     "gulp": "~3.8.10",
@@ -18,7 +17,9 @@
     "gulp-less": "~2.0.1",
     "coffee-script": "~1.8.0",
     "bluebird": "~2.9.13",
-    "plist": "~1.1.0"
+    "plist": "~1.1.0",
+    "knex": "~0.7.4",
+    "sqlite3": "~3.0.5"
   },
   "devDependencies": {
     "should": "~5.0.1",
