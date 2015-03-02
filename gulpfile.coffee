@@ -31,7 +31,7 @@ gulp.task 'static', ->
         .pipe gulp.dest "#{destDir}"
 
 gulp.task 'index-js', ->
-    gulp.src "index.coffee"
+    gulp.src "coffee/index.coffee"
         .pipe coffee()
         .pipe gulp.dest ""
 
@@ -48,5 +48,5 @@ gulp.task 'watch', ['default'], ->
     gulp.watch "#{sourceDir}/less/**/*.less", ['css']
     gulp.watch "#{sourceDir}/jade/**/*.jade", ['html']
     gulp.watch "#{sourceDir}/static/**/*", ['static']
-    gulp.watch "index.coffee", ['index-js']
+    gulp.watch "coffee/index.coffee", ['index-js']
     gulp.watch "coffee/**/*.coffee", ['main-js']
