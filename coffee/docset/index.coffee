@@ -7,8 +7,7 @@ docsets = []
 
 getDocsets = (forceUpdate = false)->
     if !forceUpdate and docsets.length > 0
-        new Promise (reslove)->
-            reslove(docsets)
+        Promise.resolve docsets
     else
         docsets = []
         promises = []
@@ -30,27 +29,33 @@ getDocsets = (forceUpdate = false)->
                     )
             )(i)
         Promise.all(promises)
+class AbortedByUser
 class module.exports extends require('events').EventEmitter
     constructor: (@keyword)->
     match: ->
         that = this
-        promises = []
+        @aborted = false
+        chain = Promise.resolve true
         getDocsets()
         .then (docsets)->
             for method in ['matchExactly', 'matchHead', 'matchTail', 'matchMiddle', 'matchDeep']
                 for docset in docsets
-                    promises.push (docset.db[method](that.keyword)
-                        .then (data)->
-                            that.emit 'result',
-                                result: data
-                                keyword: that.keyword
-                                method: method
-                                docset: docset
-                    )
-            null
-        .then ->
-            Promise.all promises
+                    chain = chain.then ->
+                        throw new AbortedByUser if that.aborted
+                        docset.db[method](that.keyword)
+                    .then (data)->
+                        that.emit 'result',
+                            result: data
+                            keyword: that.keyword
+                            method: method
+                            docset: docset
+            chain
         .then ->
             that.emit 'finish'
         .catch (err)->
-            that.emit 'error', err
+            if err instanceof AbortedByUser
+                that.emit 'abort'
+            else
+                that.emit 'error', err
+    abort: ->
+        @aborted = true

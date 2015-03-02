@@ -57,6 +57,17 @@ describe 'Docset match test', ->
             hasResult.should.eql true
             done()
         handle.on 'error', (err)->
-            console.log err
             throw err
         handle.match()
+    it 'should aborted correctly', (done)->
+        handle = new ds 'f'
+        handle.on 'result', ->
+            throw new Error "The match generated results after aborted it."
+        handle.on 'finish', ->
+            throw new Error "The match finished after aborted it."
+        handle.on 'error', (err)->
+            throw err
+        handle.on 'abort', ->
+            done()
+        handle.match()
+        handle.abort()
