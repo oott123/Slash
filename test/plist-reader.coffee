@@ -10,7 +10,6 @@ describe 'Plist reader test', ->
             data.should.have.property 'CFBundleIdentifier'
             data.should.have.property 'CFBundleName'
             data.should.have.property 'DocSetPlatformFamily'
-            data.should.have.property 'dashIndexFilePath'
             data.should.have.property 'isDashDocset', true
         files = fs.readdirSync 'Docsets'
         promises = []
