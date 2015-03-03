@@ -9,6 +9,8 @@ tray = require 'tray'
 
 mainWindow = null
 
+process.chdir __dirname
+
 app.on 'ready', ->
     require './js/search'
     mainWindow = new browserWindow
