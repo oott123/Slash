@@ -59,5 +59,7 @@ class module.exports extends require('events').EventEmitter
                 that.emit 'abort'
             else
                 that.emit 'error', err
+        .finally ->
+            that.emit 'finally'
     abort: ->
         @aborted = true

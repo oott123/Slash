@@ -10,6 +10,7 @@ tray = require 'tray'
 mainWindow = null
 
 app.on 'ready', ->
+    require './js/search'
     mainWindow = new browserWindow
         width: 1000
         height: 710
