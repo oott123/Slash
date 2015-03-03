@@ -9,7 +9,7 @@ html
 		.main-wrapper
 			.title-bar.sub-wrapper
 				.search.left
-					input#search(type="text" placeholder="Search" autofocus)
+					input#search(type="text" placeholder="Search" autofocus v-on="keyup: search")
 				.nav.right
 					.button-group.left
 						.forward.button.left
@@ -28,9 +28,10 @@ html
 								li About ...
 			.body.sub-wrapper
 				.index.left
-					ul
-						li.active file_get_contents
-						li file_put_contents
+					ul(v-repeat="result: results")
+						li {{result.name}}
 				.content.right
 					h1 file_get_contents
 					h2 This is the most f**kable function in PHP.
+		script(src="assets/js/common.js")
+		script(src="assets/js/search.js")
