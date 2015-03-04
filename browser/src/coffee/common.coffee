@@ -14,7 +14,7 @@ S.vm = new Vue
         results: [
             {name: 'Hello Slash!'}
         ]
-        webContentSrc: 'about:blank'
+        webContentSrc: ''
         title: 'Welcome'
     methods:
         search: (e)->
