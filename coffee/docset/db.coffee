@@ -13,17 +13,18 @@ class module.exports
         @s().count 'name'
         .then (rows)->
             rows[0]['count("name")']
-    matchExactly: (key)->
-        @s().where 'name', 'like', key
-    matchHead: (string)->
-        @s().where 'name', 'like', "#{string}%"
-    matchTail: (string)->
-        @s().where 'name', 'like', "%#{string}"
-    matchMiddle: (string)->
-        @s().where 'name', 'like', "%#{string}%"
-    matchDeep: (string, depth = 1)->
+    matchExactly: (key, limit = 1)->
+        @s().where('name', 'like', key).limit(limit)
+    matchHead: (string, limit = 50)->
+        @s().where('name', 'like', "#{string}%").limit(limit)
+    matchTail: (string, limit = 50)->
+        @s().where('name', 'like', "%#{string}").limit(limit)
+    matchMiddle: (string, limit = 50)->
+        @s().where('name', 'like', "%#{string}%").limit(limit)
+    matchDeep: (string, limit = 50)->
         match = ''
+        depth = 1
         for char, i in string
             match += '%' unless i % depth
             match += char
-        @s().where 'name', 'like', "%#{match}%"
+        @s().where('name', 'like', "%#{match}%").limit(limit)
