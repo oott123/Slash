@@ -39,8 +39,6 @@ S.vm = new Vue
             lastDs.match()
         loadWeb: (e)->
             item = e.targetVM.result
-            webview = $('#web-content')[0]
-            webview.stop()
             @$data.webContentSrc = "../Docsets/" +
                 encodeURIComponent(item.docset.name) +
                 "/Contents/Resources/Documents/#{item.path}"

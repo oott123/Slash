@@ -9,8 +9,6 @@ tray = require 'tray'
 
 mainWindow = null
 
-process.chdir __dirname
-
 app.on 'ready', ->
     require './js/search'
     mainWindow = new browserWindow
@@ -19,5 +17,4 @@ app.on 'ready', ->
         "web-preferences":
             "direct-write": true
             "overlay-scrollbars": false
-    mainWindow.toggleDevTools()
     mainWindow.loadUrl 'file://' + __dirname + '/browser/index.html'
