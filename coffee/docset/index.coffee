@@ -40,7 +40,7 @@ class module.exports extends require('events').EventEmitter
         .then (docsets)->
             for method in ['matchExactly', 'matchHead', 'matchTail', 'matchMiddle', 'matchDeep']
                 for docset in docsets
-                    ((method, docset)->
+                    do (method, docset)->
                         chain = chain.then ->
                             throw new AbortedByUser if that.aborted
                             docset.db[method](that.keyword)
@@ -50,7 +50,6 @@ class module.exports extends require('events').EventEmitter
                                 keyword: that.keyword
                                 method: method
                                 docset: docset
-                    )(method, docset)
             chain
         .then ->
             that.emit 'finish'
