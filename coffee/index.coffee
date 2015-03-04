@@ -7,7 +7,7 @@ ipc = require 'ipc'
 menu = require 'menu'
 tray = require 'tray'
 
-args = require './js/args'
+args = require './args'
 process.chdir args.workdir if args.workdir
 
 mainWindow = null
@@ -20,4 +20,4 @@ app.on 'ready', ->
             "direct-write": true
             "overlay-scrollbars": false
     mainWindow.openDevTools() if args.debug
-    mainWindow.loadUrl 'file://' + __dirname + '/browser/index.html'
+    mainWindow.loadUrl 'file://' + __dirname + '/../browser/index.html'

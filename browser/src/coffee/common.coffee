@@ -3,7 +3,7 @@ window.ipc = require 'ipc'
 window.Vue = require './bower_components/vue/dist/vue.js'
 window.$ = require './bower_components/jquery/dist/jquery.js'
 remote = require 'remote'
-S.ds = remote.require './js/docset'
+S.ds = remote.require './docset'
 S.cwd = remote.process.cwd()
 
 S.vm = new Vue
