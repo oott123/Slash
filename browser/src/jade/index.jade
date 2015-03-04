@@ -12,15 +12,17 @@ html
 					input#search(type="text" placeholder="Search" autofocus v-on="keyup: search" v-model="keyword")
 				.nav.right
 					.button-group.left
-						.forward.button.left
+						.forward.button.left(v-class="disabled: !buttons.backward"
+						v-on="click: webNav(-1)")
 							i.fa.fa-angle-left
-						.back.button.right.disabled
+						.back.button.right(v-class="disabled: !buttons.forward"
+						v-on="click: webNav(1)")
 							i.fa.fa-angle-right
 					#doc-title.title {{title}}
 					.button-group.right
-						.bookmark.button.right
+						.bookmark.button.right(v-class="disabled: !buttons.bookmark")
 							i.fa.fa-bookmark
-						.bars.button.left
+						.bars.button.left(v-class="disabled: !buttons.options")
 							i.fa.fa-bars
 							ul.menu.popup
 								li Settings ...

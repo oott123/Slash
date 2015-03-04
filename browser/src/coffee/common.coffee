@@ -15,6 +15,11 @@ S.vm = new Vue
         webContentSrc: ''
         title: 'Welcome'
         keyword: ''
+        buttons:
+            forward: false
+            backward: false
+            bookmark: true
+            options: true
     methods:
         search: ->
             keyword = @keyword
@@ -47,4 +52,8 @@ S.vm = new Vue
             $('ul#doc-list li').removeClass 'active'
             $(e.target).addClass 'active'
         updateTitle: (e)->
-            @$data.title = e.target.getTitle()
+            @title = e.target.getTitle()
+            @buttons.backward = e.target.canGoBack()
+            @buttons.forward = e.target.canGoForward()
+        webNav: (i)->
+            $('#web-content')[0].goToOffset(i)
