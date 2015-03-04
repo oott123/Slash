@@ -34,6 +34,8 @@ html
 						li(v-on="click: loadWeb" v-repeat="result: results")
 							| {{result.name}}
 				.content.right
-					webview#web-content(v-attr="src: webContentSrc" v-on="did-stop-loading: updateTitle")
+					webview#web-content(preload="./assets/js/inject.js"
+						v-attr="src: webContentSrc"
+						v-on="did-stop-loading: updateTitle, console-message: message")
 		script(src="assets/js/common.js")
 		script(src="assets/js/search.js")

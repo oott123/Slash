@@ -57,3 +57,5 @@ S.vm = new Vue
             @buttons.forward = e.target.canGoForward()
         webNav: (i)->
             $('#web-content')[0].goToOffset(i)
+        message: (e)->
+            console.log e.message

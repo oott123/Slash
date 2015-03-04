@@ -12,6 +12,8 @@ process.chdir args.workdir if args.workdir
 
 mainWindow = null
 
+app.commandLine.appendSwitch 'host-rules', 'MAP * 0.0.0.0'
+
 app.on 'ready', ->
     mainWindow = new browserWindow
         width: 1000
