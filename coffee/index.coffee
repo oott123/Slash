@@ -22,5 +22,6 @@ app.on 'ready', ->
         "web-preferences":
             "direct-write": true
             "overlay-scrollbars": false
+        icon: "#{process.cwd()}/Slash.png"
     mainWindow.openDevTools() if args.debug
     mainWindow.loadUrl 'file://' + __dirname + '/../browser/index.html'

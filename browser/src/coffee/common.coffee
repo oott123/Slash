@@ -62,3 +62,7 @@ S.vm = new Vue
             console.log e.message
         openInBrowser: ->
             require('shell').openExternal(@webContentSrc)
+            $('.bars').blur()
+        refreshBrowser: (e)->
+            $('#web-content')[0].reloadIgnoringCache()
+            $('.bars').blur()
