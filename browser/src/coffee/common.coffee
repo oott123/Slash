@@ -36,6 +36,8 @@ S.vm = new Vue
                 S.vm.$data.results = []
                 for res in allData
                     processResult res
+                Vue.nextTick ->
+                    $('ul#doc-list li:first').click()
             handle.match()
         loadWeb: (e)->
             item = e.targetVM.result
