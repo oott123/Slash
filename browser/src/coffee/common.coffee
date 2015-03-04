@@ -6,8 +6,6 @@ remote = require 'remote'
 S.ds = remote.require './js/docset'
 S.cwd = remote.process.cwd()
 
-lastDs = undefined
-
 S.vm = new Vue
     el: 'html'
     data:
@@ -16,27 +14,29 @@ S.vm = new Vue
         ]
         webContentSrc: ''
         title: 'Welcome'
+        keyword: ''
     methods:
-        search: (e)->
-            if lastDs
-                lastDs.abort()
-            keyword = $(e.target).val()
+        search: ->
+            keyword = @keyword
             return if keyword.length < 2
-            lastDs = new S.ds keyword
-            vm = this
-            vm.$data.results = []
+            handle = new S.ds keyword
             loadedItems = {}
-            lastDs.on 'result', (result)->
+            processResult =  (result)->
                 lt = loadedItems[result.docset.name] = loadedItems[result.docset.name] or {}
                 for i in result.result
-                    if vm.$data.results.length > 100
-                        lastDs.abort()
-                        return
+                    return unless result.keyword is S.vm.$data.keyword
+                    return if S.vm.$data.results.length > 100
                     continue if lt[i.id]
                     lt[i.id] = true
-                    i.docset = result.docset
-                    vm.$data.results.push i
-            lastDs.match()
+                    i.docset =
+                        name: result.docset.name
+                    S.vm.$data.results.push i
+            handle.on 'finish', (allData)->
+                return unless allData[0].keyword is S.vm.$data.keyword
+                S.vm.$data.results = []
+                for res in allData
+                    processResult res
+            handle.match()
         loadWeb: (e)->
             item = e.targetVM.result
             @$data.webContentSrc = "../Docsets/" +

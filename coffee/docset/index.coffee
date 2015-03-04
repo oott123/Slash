@@ -34,31 +34,24 @@ class module.exports extends require('events').EventEmitter
     constructor: (@keyword)->
     match: ->
         that = this
-        @aborted = false
-        chain = Promise.resolve true
         getDocsets()
         .then (docsets)->
+            promises = []
             for method in ['matchExactly', 'matchHead', 'matchTail', 'matchMiddle', 'matchDeep']
                 for docset in docsets
                     do (method, docset)->
-                        chain = chain.then ->
-                            throw new AbortedByUser if that.aborted
-                            docset.db[method](that.keyword)
+                        promises.push(new Promise (reslove)->
+                            reslove docset.db[method](that.keyword)
                         .then (data)->
-                            that.emit 'result',
-                                result: data
-                                keyword: that.keyword
-                                method: method
-                                docset: docset
-            chain
-        .then ->
-            that.emit 'finish'
+                            result: data
+                            keyword: that.keyword
+                            method: method
+                            docset: docset
+                        )
+            Promise.all promises
+        .then (allData)->
+            that.emit 'finish', allData
         .catch (err)->
-            if err instanceof AbortedByUser
-                that.emit 'abort'
-            else
-                that.emit 'error', err
+            that.emit 'error', err
         .finally ->
             that.emit 'finally'
-    abort: ->
-        @aborted = true
