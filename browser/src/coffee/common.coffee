@@ -61,4 +61,4 @@ S.vm = new Vue
         message: (e)->
             console.log e.message
         openInBrowser: ->
-            remote.require('shell').openExternal(@webContentSrc)
+            require('shell').openExternal(@webContentSrc)
