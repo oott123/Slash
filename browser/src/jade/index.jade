@@ -1,7 +1,7 @@
 doctype html
 html
 	head
-		title Slash / Slash
+		title {{title}} / Slash
 		meta(charset="utf8")
 		link(rel="stylesheet" href="assets/css/importer.css")
 		link(rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css")
@@ -16,7 +16,7 @@ html
 							i.fa.fa-angle-left
 						.back.button.right.disabled
 							i.fa.fa-angle-right
-					#doc-title.title Welcome!
+					#doc-title.title {{title}}
 					.button-group.right
 						.bookmark.button.right
 							i.fa.fa-bookmark
@@ -28,10 +28,10 @@ html
 								li About ...
 			.body.sub-wrapper
 				.index.left
-					ul(v-repeat="result: results")
-						li {{result.name}}
+					ul#doc-list
+						li(v-on="click: loadWeb" v-repeat="result: results")
+							| {{result.name}}
 				.content.right
-					h1 file_get_contents
-					h2 This is the most f**kable function in PHP.
+					webview#web-content(v-attr="src: webContentSrc" v-on="did-stop-loading: updateTitle")
 		script(src="assets/js/common.js")
 		script(src="assets/js/search.js")

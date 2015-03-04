@@ -8,10 +8,15 @@ body, html {
 .main-wrapper {
 	height: 100%;
 	width: 100%;
+	overflow: hidden;
 }
 
+@title-height: 34px;
+
 .sub-wrapper {
+	height: 100%;
 	display: flex;
+	overflow: hidden;
 	> .left {
 		width: 300px;
 	}
@@ -22,7 +27,7 @@ body, html {
 
 .title-bar {
 	text-align: center;
-	height: 34px;
+	height: @title-height;
 	line-height: 32px;
 	background-color: #ccc;
 	> .search input {
@@ -46,7 +51,6 @@ body, html {
 	> .button {
 		display: inline-block;
 		width: 50%;
-		margin-top: 1px;
 		box-sizing: border-box;
 		background: #fff;
 		border: 1px solid #fff;
@@ -57,11 +61,16 @@ body, html {
 }
 
 .sub-wrapper.body {
+	box-sizing: border-box;
+	padding-bottom: @title-height;
 	> .index {
+		overflow-x: hidden;
+		overflow-y: auto;
 		ul {
 			list-style-type: none;
 			padding: 0;
 			margin: 0 0 0 0;
+			height: 100%;
 			li {
 				cursor: default;
 				box-sizing: border-box;
@@ -81,6 +90,13 @@ body, html {
 					border-top-color: rgba(0,0,0,0);
 				}
 			}
+		}
+	}
+	> .content {
+		height: 100%;
+		webview {
+			height: 100%;
+			width: 100%;
 		}
 	}
 }
