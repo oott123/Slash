@@ -26,4 +26,4 @@ class module.exports
         for char, i in string
             match += '%' unless i % depth
             match += char
-        @s().where 'name', 'like', match
+        @s().where 'name', 'like', "%#{match}%"
