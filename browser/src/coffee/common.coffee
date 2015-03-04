@@ -47,7 +47,7 @@ S.vm = new Vue
             handle.match()
         loadWeb: (e)->
             item = e.targetVM.result
-            @$data.webContentSrc = "http://127.0.0.1:#{S.docPort}/" +
+            @.webContentSrc = "http://127.0.0.1:#{S.docPort}/" +
                 encodeURIComponent(item.docset.name) +
                 "/Contents/Resources/Documents/#{item.path}"
             $('ul#doc-list li').removeClass 'active'
@@ -60,3 +60,5 @@ S.vm = new Vue
             $('#web-content')[0].goToOffset(i)
         message: (e)->
             console.log e.message
+        openInBrowser: ->
+            remote.require('shell').openExternal(@webContentSrc)

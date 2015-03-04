@@ -22,9 +22,14 @@ html
 					.button-group.right
 						.bookmark.button.right(v-class="disabled: !buttons.bookmark")
 							i.fa.fa-bookmark
-						.bars.button.left(v-class="disabled: !buttons.options")
+						.bars.button.left(
+							v-class="disabled: !buttons.options"
+							tabindex=1)
 							i.fa.fa-bars
-							ul.menu.popup
+							ul.menu.popup.dropdown
+								li.buttons
+									.button(v-on="click: openInBrowser")
+										i.fa.fa-globe
 								li Settings ...
 								li.separate
 								li About ...
@@ -34,7 +39,7 @@ html
 						li(v-on="click: loadWeb" v-repeat="result: results")
 							| {{result.name}}
 				.content.right
-					webview#web-content(preload="./assets/js/inject.js"
+					webview#web-content(
 						v-attr="src: webContentSrc"
 						v-on="did-stop-loading: updateTitle, console-message: message")
 		script(src="assets/js/common.js")

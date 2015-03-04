@@ -13,25 +13,44 @@
         right: 0;
         width: 150px;
     }
-    li{
+    li {
         .menu-item;
         padding-left: 20px;
-        &.separate{
+        &.separate {
             height: 1px;
             background-color: #ccc;
             padding: 0;
             border: 0;
         }
+        &.buttons {
+            text-align: center;
+            border: none;
+            background: transparent;
+            padding-left: 0;
+            padding-right: 0;
+            &:hover {
+                background: transparent;
+            }
+            .button {
+                .menu-item;
+                display: inline-block;
+                line-height: 32px;
+                height: 32px;
+                width: 32px;
+                text-align: center;
+            }
+        }
     }
 }
 .menu-item{
     -webkit-user-select: none;
+    cursor: default;
     border: 1px solid rgba(0,0,0,0);
-    &:hover {
+    &:hover, &:focus {
         background: #E5F3FB;
         border: 1px solid #70C0E7;
     }
-    &.disabled, &.disabled:hover {
+    &.disabled, &.disabled:hover, &.disabled:focus {
         background: #ddd;
         color: #999;
         border: 1px solid #ddd;

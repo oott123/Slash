@@ -38,8 +38,11 @@ body, html {
 		> .button-group {
 			-webkit-user-select: none;
 			width: 64px;
-			> .bars:hover ul{
-				display: block;
+			> .bars:focus {
+				outline: none;
+				> ul.dropdown {
+					display: block;
+				}
 			}
 		}
 		> .title {
