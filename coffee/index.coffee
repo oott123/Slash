@@ -9,10 +9,11 @@ tray = require 'tray'
 
 args = require './args'
 process.chdir args.workdir if args.workdir
+defaultDocPort = args.docport or 33300
 
 mainWindow = null
 
-app.commandLine.appendSwitch 'host-rules', 'MAP * 0.0.0.0'
+require('./server/doc-server').run(defaultDocPort, "#{process.cwd()}/Docsets/")
 
 app.on 'ready', ->
     mainWindow = new browserWindow
