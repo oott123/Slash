@@ -58,7 +58,7 @@ S.vm = new Vue
             handle.match()
         loadWeb: (e)->
             item = e.targetVM.result
-            @.webContentSrc = "http://localhost:#{S.docPort}/" +
+            @data.webContentSrc = "http://localhost:#{S.docPort}/" +
                 encodeURIComponent(item.docset.name) +
                 "/Contents/Resources/Documents/#{item.path}"
             $('ul#doc-list li').removeClass 'active'
@@ -76,10 +76,15 @@ S.vm = new Vue
             $('.bars').blur()
         refreshBrowser: (e)->
             $('#web-content')[0].reloadIgnoringCache()
-            $('.bars').blur()
         openConfigWindow: ->
             @isConfigShow = true
-            $('.bars').blur()
+        showDocsetStat: ->
+            handle = new S.ds()
+            handle.stat().then (data)->
+                str = "==== Docsets Index Item Count ====\n\n"
+                for i in data
+                    str += "#{i.docset}: #{i.data}\n"
+                alert(str)
 $('document').ready ->
     $('input#search').keydown (e)->
         next = false
@@ -96,3 +101,5 @@ $('document').ready ->
             e.stopPropagation()
             e.preventDefault()
             return false
+    $('.bars .menu.dropdown').click ->
+        $('.bars').blur()

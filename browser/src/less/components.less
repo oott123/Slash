@@ -1,5 +1,6 @@
 .menu{
     -webkit-user-select: none;
+    font-size: 10pt;
     background-color: #FBFCFD;
     margin: 0 2px 2px;
     padding: 2px;
@@ -11,11 +12,11 @@
         display: none;
         position: fixed;
         right: 0;
-        width: 150px;
+        min-width: 150px;
     }
     li {
         .menu-item;
-        padding-left: 20px;
+        padding: 0 20px;
         &.separate {
             height: 1px;
             background-color: #ccc;
@@ -24,6 +25,7 @@
             margin: 2px 0;
         }
         &.buttons {
+            font-size: 12pt;
             display: flex;
             flex-wrap: wrap;
             text-align: center;

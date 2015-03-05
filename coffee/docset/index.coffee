@@ -59,3 +59,17 @@ class module.exports extends require('events').EventEmitter
             that.emit 'error', err
         .finally ->
             that.emit 'finally'
+    stat: ->
+        getDocsets()
+        .then (docsets)->
+            promises = []
+            for docset in docsets
+                do (docset)->
+                    promises.push(
+                        docset.db.getIndexCount().catch (e)->
+                            "Error: #{e.message}"
+                        .then (data)->
+                            docset: docset.meta.CFBundleName
+                            data: data
+                    )
+            Promise.all promises
