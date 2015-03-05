@@ -1,6 +1,8 @@
 Promise = require 'bluebird'
 knex = require 'knex'
 
+config = require('../config').config
+
 class module.exports
     constructor: (@fileName) ->
         @k = knex
@@ -15,13 +17,13 @@ class module.exports
             rows[0]['count("name")']
     matchExactly: (key, limit = 1)->
         @s().where('name', 'like', key).limit(limit)
-    matchHead: (string, limit = 50)->
+    matchHead: (string, limit = config.maxItem / 2)->
         @s().where('name', 'like', "#{string}%").limit(limit)
-    matchTail: (string, limit = 50)->
+    matchTail: (string, limit = config.maxItem / 2)->
         @s().where('name', 'like', "%#{string}").limit(limit)
-    matchMiddle: (string, limit = 50)->
+    matchMiddle: (string, limit = config.maxItem / 2)->
         @s().where('name', 'like', "%#{string}%").limit(limit)
-    matchDeep: (string, limit = 50)->
+    matchDeep: (string, limit = config.maxItem / 2)->
         match = ''
         depth = 1
         for char, i in string
