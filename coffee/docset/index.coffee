@@ -44,8 +44,7 @@ class module.exports extends require('events').EventEmitter
                     do (method, docset)->
                         promises.push(new Promise (reslove)->
                             reslove docset.db[method](that.keyword)
-                        .catch (e)->
-                            console.log "#{docset.name} is error!"
+                        .catch ->
                             []
                         .then (data)->
                             result: data
