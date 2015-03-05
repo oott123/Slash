@@ -1,6 +1,9 @@
 remote = require 'remote'
 _ = require 'lodash'
 
+docSetDir = remote.require('./args').docsetdir.replace(/\\/g, '/')
+console.log docSetDir
+
 # register global shortcut
 if S.cfg.shortCut
     ret = remote.require('global-shortcut').register S.cfg.shortCut, ->
@@ -89,7 +92,7 @@ S.vm = new Vue
                     str += "#{i.docset}: #{i.data}\n"
                 alert(str)
         getBg: (name)->
-            "url('http://localhost:#{S.docPort}/" +
+            "url('#{docSetDir}/" +
                 encodeURIComponent(name) +
                 "/icon.png')"
 $('document').ready ->
