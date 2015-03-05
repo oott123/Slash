@@ -2,11 +2,12 @@ remote = require 'remote'
 _ = require 'lodash'
 
 # register global shortcut
-ret = remote.require('global-shortcut').register S.cfg.shortCut, ->
-    ipc.send 'showMainWindow'
-    $('input#search').focus()
-unless ret
-    alert "Failed to register global shortcut #{S.cfg.shortCut}.\nCheck if it was already in use."
+if S.cfg.shortCut
+    ret = remote.require('global-shortcut').register S.cfg.shortCut, ->
+        ipc.send 'showMainWindow'
+        $('input#search').focus()
+    unless ret
+        alert "Failed to register global shortcut #{S.cfg.shortCut}.\nCheck if it was already in use."
 
 S.vm = new Vue
     el: 'html'
@@ -35,7 +36,7 @@ S.vm = new Vue
                 lt = loadedItems[result.docset.name] = loadedItems[result.docset.name] or {}
                 for i in result.result
                     return unless result.keyword is S.vm.$data.keyword
-                    return if S.vm.$data.results.length > 100
+                    return if S.vm.$data.results.length > S.cfg.maxItem
                     continue if lt[i.id]
                     lt[i.id] = true
                     i.docset =

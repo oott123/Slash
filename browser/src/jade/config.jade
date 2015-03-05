@@ -10,21 +10,17 @@ html
                 .separator.item(v-if="item.type=='separator'")
                     | {{item.title}}
                 .config.item.checkbox(v-if="item.type=='checkbox'")
-                    inputdiv(type="checkbox", v-model="item.value") (id="{{item.key}}")
-                    label(for="{{item.key}}")
-                        | {{item.title}}
+                    input(type="checkbox", v-model="item.value" id="{{item.key}}")
+                    label(for="{{item.key}}") {{item.title}}
                 .config.item.select(v-if="item.type=='select'")
                     label(for="{{item.key}}") {{item.title}}
-                    selectdiv(v-model="item.value") (id="{{item.key}}")
-                        option(v-repeat="option: item.options", value="{{option.key}}")
-                            | {{option.title}}
-                .config.item.text(v-if="item.type == 'text'")
-                    label(for="{{item.key}}")
-                        | {{item.title}}
-                    inputdiv(type="text", v-model="item.value") (id="{{item.key}}")
+                    select(v-model="item.value" id="{{item.key}}")
+                        option(v-repeat="option: item.options", value="{{option.key}}") {{option.title}}
+                .config.item.text(v-if="item.type == 'text' || item.type == 'int' || item.type == 'number'")
+                    label(for="{{item.key}}") {{item.title}}
+                    input(type="text", v-model="item.value" id="{{item.key}}")
         .ctrls
             button(v-on="click: saveAndClose") Ok
             button(v-on="click: closeWindow") Cancel
-            button(v-attr="disabled: configNotChanged", v-on="click: saveConfig") Apply
         script(type="text/javascript", src="assets/js/common.js")
         script(type="text/javascript", src="assets/js/config.js")
