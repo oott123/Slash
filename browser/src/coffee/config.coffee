@@ -1,7 +1,7 @@
 remote = require 'remote'
 cfg = remote.require './config'
 config = cfg.config
-window.Vue = Vue or require './bower_components/vue/dist/vue.js'
+window.Vue = window.Vue or require './bower_components/vue/dist/vue.js'
 window.vm = new Vue
     el: 'body'
     data:
