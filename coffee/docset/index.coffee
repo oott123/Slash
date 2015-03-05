@@ -17,6 +17,7 @@ getDocsets = (forceUpdate = false)->
             do (i)->
                 docsetDir = "#{args.docsetdir}/#{i}"
                 if fs.statSync(docsetDir).isDirectory()
+                    return unless i.match /\.docset$/
                     return unless fs.statSync("#{docsetDir}/Contents/Info.plist").isFile()
                     return unless fs.statSync("#{docsetDir}/Contents/Resources/docSet.dsidx").isFile()
                     promises.push(

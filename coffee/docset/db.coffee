@@ -17,6 +17,7 @@ class module.exports
         if @isZDash
             @k.raw '
                 SELECT
+                    ztoken.z_pk AS id,
                     ztoken.ztokenname AS name,
                     ztokentype.ztypename AS type,
                     printf("%s#%s", zfilepath.zpath, ztokenmetainformation.zanchor) AS path
