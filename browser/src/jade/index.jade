@@ -39,7 +39,8 @@ html
 			.body.sub-wrapper
 				.index.left
 					ul#doc-list
-						li(v-on="click: loadWeb" v-repeat="result: results")
+						li(v-on="click: loadWeb" v-repeat="result: results"
+							v-style="background-image: getBg(result.docset.name)")
 							| {{result.name}}
 				.content.right
 					webview#web-content(

@@ -88,6 +88,10 @@ S.vm = new Vue
                 for i in data
                     str += "#{i.docset}: #{i.data}\n"
                 alert(str)
+        getBg: (name)->
+            "url('http://localhost:#{S.docPort}/" +
+                encodeURIComponent(name) +
+                "/icon.png')"
 $('document').ready ->
     $('input#search').keydown (e)->
         next = false
