@@ -36,6 +36,9 @@ S.vm = new Vue
             return e.preventDefault() if [40, 38].indexOf(e.which) >= 0
             keyword = @keyword
             return if keyword.length < 2
+            if keyword.match /^https?:\/\//
+                @webContentSrc = keyword
+                return
             handle = new S.ds keyword
             loadedItems = {}
             processResult =  (result)->
