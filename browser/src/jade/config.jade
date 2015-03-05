@@ -20,7 +20,7 @@ html
                     label(for="{{item.key}}") {{item.title}}
                     input(type="text", v-model="item.value" id="{{item.key}}")
         .ctrls
-            button(v-on="click: saveAndClose") Ok
+            button(v-on="click: saveAndClose") OK
             button(v-on="click: closeWindow") Cancel
         script(type="text/javascript", src="assets/js/common.js")
         script(type="text/javascript", src="assets/js/config.js")

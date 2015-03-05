@@ -33,7 +33,7 @@ html
 									.button(v-on="click: refreshBrowser")
 										i.fa.fa-refresh
 								li.separate
-								li Settings ...
+								li(v-on="click: openConfigWindow") Settings ...
 								li About ...
 			.body.sub-wrapper
 				.index.left
@@ -44,5 +44,7 @@ html
 					webview#web-content(
 						v-attr="src: webContentSrc"
 						v-on="did-stop-loading: updateTitle, console-message: message")
+			.cover.config(v-class="hidden: !isConfigShow")
+				iframe#config(src="config.html" frameborder="0")
 		script(src="assets/js/common.js")
 		script(src="assets/js/search.js")

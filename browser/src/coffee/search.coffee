@@ -6,8 +6,13 @@ if S.cfg.shortCut
     ret = remote.require('global-shortcut').register S.cfg.shortCut, ->
         ipc.send 'showMainWindow'
         $('input#search').focus()
+    window.onbeforeunload = ->
+        remote.require('global-shortcut').unregister S.cfg.shortCut
     unless ret
         alert "Failed to register global shortcut #{S.cfg.shortCut}.\nCheck if it was already in use."
+
+window.closeConfig = ->
+    S.vm.$data.isConfigShow = false
 
 S.vm = new Vue
     el: 'html'
@@ -23,6 +28,7 @@ S.vm = new Vue
             backward: false
             bookmark: true
             options: true
+        isConfigShow: false
     methods:
         lazySearch: ->
             _.debounce(this.search, S.cfg.searchDelay).apply(this, arguments)
@@ -70,6 +76,9 @@ S.vm = new Vue
             $('.bars').blur()
         refreshBrowser: (e)->
             $('#web-content')[0].reloadIgnoringCache()
+            $('.bars').blur()
+        openConfigWindow: ->
+            @isConfigShow = true
             $('.bars').blur()
 $('document').ready ->
     $('input#search').keydown (e)->
