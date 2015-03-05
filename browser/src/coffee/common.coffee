@@ -9,6 +9,13 @@ S.docPort = remote.require('./server/doc-server').docPort
 S.cfg = remote.require('./config').config
 _ = require 'lodash'
 
+# register global shortcut
+ret = remote.require('global-shortcut').register S.cfg.shortCut, ->
+    ipc.send 'showMainWindow'
+    $('input#search').focus()
+unless ret
+    alert "Failed to register global shortcut #{S.cfg.shortCut}.\nCheck if it was already in use."
+
 S.vm = new Vue
     el: 'html'
     data:

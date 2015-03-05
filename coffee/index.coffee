@@ -26,3 +26,5 @@ app.on 'ready', ->
         icon: "#{process.cwd()}/Slash.png"
     mainWindow.openDevTools() if args.debug
     mainWindow.loadUrl 'file://' + __dirname + '/../browser/index.html'
+ipc.on 'showMainWindow', ->
+    mainWindow.show()
