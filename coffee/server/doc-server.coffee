@@ -12,7 +12,7 @@ createServer = (app, port, resolve, reject)->
     ).once('listening', ->
         exports.docPort = port
         resolve(port)
-    ).listen(port, '127.0.0.1')
+    ).listen(port, 'localhost')
 exports.run = (port, root)->
     new Promise (resolve, reject)->
         return resolve exports.docPort if exports.docPort

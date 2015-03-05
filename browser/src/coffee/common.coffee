@@ -47,7 +47,7 @@ S.vm = new Vue
             handle.match()
         loadWeb: (e)->
             item = e.targetVM.result
-            @.webContentSrc = "http://127.0.0.1:#{S.docPort}/" +
+            @.webContentSrc = "http://localhost:#{S.docPort}/" +
                 encodeURIComponent(item.docset.name) +
                 "/Contents/Resources/Documents/#{item.path}"
             $('ul#doc-list li').removeClass 'active'
