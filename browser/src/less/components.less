@@ -21,8 +21,11 @@
             background-color: #ccc;
             padding: 0;
             border: 0;
+            margin: 2px 0;
         }
         &.buttons {
+            display: flex;
+            flex-wrap: wrap;
             text-align: center;
             border: none;
             background: transparent;
@@ -33,10 +36,11 @@
             }
             .button {
                 .menu-item;
+                flex: 1;
                 display: inline-block;
                 line-height: 32px;
                 height: 32px;
-                width: 32px;
+                min-width: 32px;
                 text-align: center;
             }
         }
