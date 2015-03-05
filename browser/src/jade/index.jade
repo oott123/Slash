@@ -9,7 +9,7 @@ html
 		.main-wrapper
 			.title-bar.sub-wrapper
 				.search.left
-					input#search(type="text" placeholder="Search" autofocus v-on="keyup: search" v-model="keyword")
+					input#search(type="text" placeholder="Search" autofocus v-on="keyup: lazySearch" v-model="keyword")
 				.nav.right
 					.button-group.left
 						.forward.button.left(v-class="disabled: !buttons.backward"

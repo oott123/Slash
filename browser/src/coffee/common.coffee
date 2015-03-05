@@ -6,6 +6,7 @@ remote = require 'remote'
 S.ds = remote.require './docset'
 S.cwd = remote.process.cwd()
 S.docPort = remote.require('./server/doc-server').docPort
+_ = require 'lodash'
 
 S.vm = new Vue
     el: 'html'
@@ -22,6 +23,8 @@ S.vm = new Vue
             bookmark: true
             options: true
     methods:
+        lazySearch: ->
+            _.debounce(this.search, 300).apply(this, arguments)
         search: (e)->
             return e.preventDefault() if [40, 38].indexOf(e.which) >= 0
             keyword = @keyword

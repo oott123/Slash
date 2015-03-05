@@ -20,7 +20,8 @@
     "bluebird": "~2.9.13",
     "plist": "~1.1.0",
     "connect": "~3.3.4",
-    "serve-static": "~1.9.1"
+    "serve-static": "~1.9.1",
+    "lodash": "~3.3.1"
   },
   "devDependencies": {
     "should": "~5.0.1",
