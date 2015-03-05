@@ -22,7 +22,8 @@ S.vm = new Vue
             bookmark: true
             options: true
     methods:
-        search: ->
+        search: (e)->
+            return e.preventDefault() if [40, 38].indexOf(e.which) >= 0
             keyword = @keyword
             return if keyword.length < 2
             handle = new S.ds keyword
@@ -66,3 +67,19 @@ S.vm = new Vue
         refreshBrowser: (e)->
             $('#web-content')[0].reloadIgnoringCache()
             $('.bars').blur()
+$('document').ready ->
+    $('input#search').keydown (e)->
+        next = false
+        if e.which is 40
+            # down
+            next = $('ul#doc-list li.active').next()
+        else if e.which is 38
+            # up
+            next = $('ul#doc-list li.active').prev()
+        if next.length
+            next.click()
+            st = next.parent().parent().scrollTop()
+            next.parent().parent().scrollTop(st + next.offset().top - 300)
+            e.stopPropagation()
+            e.preventDefault()
+            return false
