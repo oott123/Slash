@@ -2,6 +2,7 @@ db = require './db'
 plistReader = require './plist-reader'
 fs = require 'fs'
 Promise = require 'bluebird'
+args = require '../args'
 
 docsets = []
 
@@ -11,11 +12,13 @@ getDocsets = (forceUpdate = false)->
     else
         docsets = []
         promises = []
-        files = fs.readdirSync 'Docsets'
+        files = fs.readdirSync args.docsetdir
         for i in files
-            ((i)->
-                docsetDir = "Docsets/#{i}"
+            do (i)->
+                docsetDir = "#{args.docsetdir}/#{i}"
                 if fs.statSync(docsetDir).isDirectory()
+                    return unless fs.statSync("#{docsetDir}/Contents/Info.plist").isFile()
+                    return unless fs.statSync("#{docsetDir}/Contents/Resources/docSet.dsidx").isFile()
                     promises.push(
                         new plistReader("#{docsetDir}/Contents/Info.plist").parse()
                         .then (meta)->
@@ -27,7 +30,6 @@ getDocsets = (forceUpdate = false)->
                             docsets.push docset
                             docset
                     )
-            )(i)
         Promise.all(promises)
 class AbortedByUser
 class module.exports extends require('events').EventEmitter
@@ -42,6 +44,9 @@ class module.exports extends require('events').EventEmitter
                     do (method, docset)->
                         promises.push(new Promise (reslove)->
                             reslove docset.db[method](that.keyword)
+                        .catch (e)->
+                            console.log "#{docset.name} is error!"
+                            []
                         .then (data)->
                             result: data
                             keyword: that.keyword
