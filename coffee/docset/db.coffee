@@ -25,10 +25,10 @@ class module.exports
                 JOIN ztokenmetainformation ON ztoken.zmetainformation = ztokenmetainformation.z_pk
                 JOIN zfilepath ON ztokenmetainformation.zfile = zfilepath.z_pk
                 JOIN ztokentype ON ztoken.ztokentype = ztokentype.z_pk
-                WHERE name LIKE ? LIMIT ?
+                WHERE name GLOB ? LIMIT ?
                 ', [match, limit]
         else
-            @s().where('name', 'like', match).limit(limit)
+            @s().whereRaw('name GLOB ?', match).limit(limit)
     getIndexCount: ->
         if @isZDash
             @k('ztoken').count('ztokenname')
@@ -41,15 +41,15 @@ class module.exports
     matchExactly: (key)->
         @nameLike(key, 1)
     matchHead: (string)->
-        @nameLike("#{string}%")
+        @nameLike("#{string}*")
     matchTail: (string)->
-        @nameLike("%#{string}")
-    matchMiddle: (string, limit)->
-        @nameLike("%#{string}%")
+        @nameLike("*#{string}")
+    matchMiddle: (string)->
+        @nameLike("*#{string}*")
     matchDeep: (string)->
         match = ''
         depth = 1
         for char, i in string
-            match += '%' unless i % depth
+            match += '*' unless i % depth
             match += char
-        @s().where('name', 'like', "%#{match}%").limit(limit)
+        @nameLike("*#{match}*")
