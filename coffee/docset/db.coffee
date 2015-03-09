@@ -38,8 +38,8 @@ class module.exports
             @s().count('name')
             .then (rows)->
                 rows[0]['count("name")']
-    matchExactly: (key)->
-        @nameLike(key, 1)
+    matchExactly: (key, limit = 1)->
+        @nameLike(key, limit)
     matchHead: (string)->
         @nameLike("#{string}*")
     matchTail: (string)->

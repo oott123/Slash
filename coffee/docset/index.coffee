@@ -4,6 +4,7 @@ fs = require 'fs'
 Promise = require 'bluebird'
 args = require '../args'
 path = require 'path'
+config = require('../config').config
 
 docsets = []
 
@@ -41,12 +42,20 @@ class module.exports extends require('events').EventEmitter
         getDocsets()
         .then (docsets)->
             promises = []
+            isGlob = false
+            if that.keyword.indexOf('?') >= 0 or that.keyword.indexOf('*') >= 0
+                console.log 'isGlob'
+                isGlob = true
             for method in ['matchExactly', 'matchHead', 'matchTail', 'matchMiddle', 'matchDeep']
                 for docset in docsets
                     do (method, docset)->
-                        promises.push(new Promise (reslove)->
-                            reslove docset.db[method](that.keyword)
-                        .catch ->
+                        promises.push(new Promise (resolve)->
+                            if isGlob
+                                return resolve docset.db[method](that.keyword, config.maxItem)
+                            resolve docset.db[method](that.keyword)
+                        .catch (e)->
+                            console.log "Error when accessing docset #{docset.name}."
+                            console.log e
                             []
                         .then (data)->
                             result: data
@@ -54,6 +63,8 @@ class module.exports extends require('events').EventEmitter
                             method: method
                             docset: docset
                         )
+                if isGlob
+                    break   # let it run just matchExactly
             Promise.all promises
         .then (allData)->
             that.emit 'finish', allData
