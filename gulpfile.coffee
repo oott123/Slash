@@ -9,7 +9,7 @@ less = require 'gulp-less'
 coffee = require 'gulp-coffee'
 
 gulp.task 'clean', ->
-    gulp.src([destDir, "#{viewsDir}/*.html", tempDir]).pipe(clean())
+    gulp.src([destDir, "#{viewsDir}/*.html"]).pipe(clean())
 
 gulp.task 'html', ->
     gulp.src "#{sourceDir}/jade/**/*.jade"
