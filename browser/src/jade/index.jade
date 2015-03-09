@@ -46,7 +46,7 @@ html
 					webview#web-content(
 						v-attr="src: webContentSrc"
 						v-on="did-stop-loading: updateTitle, console-message: message")
-			.cover.config(v-class="hidden: !isConfigShow")
+			.cover.config.hidden(v-class="hidden: !isConfigShow")
 				iframe#config(src="config.html" frameborder="0")
 		script(src="assets/js/common.js")
 		script(src="assets/js/search.js")
