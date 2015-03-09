@@ -3,6 +3,7 @@ plistReader = require './plist-reader'
 fs = require 'fs'
 Promise = require 'bluebird'
 args = require '../args'
+path = require 'path'
 
 docsets = []
 
@@ -15,19 +16,19 @@ getDocsets = (forceUpdate = false)->
         files = fs.readdirSync args.docsetdir
         for i in files
             do (i)->
-                docsetDir = "#{args.docsetdir}/#{i}"
+                docsetDir = path.join args.docsetdir, i
                 if fs.statSync(docsetDir).isDirectory()
                     return unless i.match /\.docset$/
-                    return unless fs.statSync("#{docsetDir}/Contents/Info.plist").isFile()
-                    return unless fs.statSync("#{docsetDir}/Contents/Resources/docSet.dsidx").isFile()
+                    return unless fs.statSync(path.join(docsetDir, "Contents/Info.plist")).isFile()
+                    return unless fs.statSync(path.join(docsetDir, "Contents/Resources/docSet.dsidx")).isFile()
                     promises.push(
-                        new plistReader("#{docsetDir}/Contents/Info.plist").parse()
+                        new plistReader(path.join(docsetDir, "Contents/Info.plist")).parse()
                         .then (meta)->
                             docset =
                                 name: i
                                 docsetDir: docsetDir
                                 meta: meta
-                                db: new db "#{docsetDir}/Contents/Resources/docSet.dsidx"
+                                db: new db(path.join(docsetDir, "Contents/Resources/docSet.dsidx"))
                             docsets.push docset
                             docset
                     )

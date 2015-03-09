@@ -10,7 +10,7 @@ tray = require 'tray'
 args = require './args'
 process.chdir args.workdir if args.workdir
 defaultDocPort = args.docport or 33300
-args.docsetdir = args.docsetdir or "#{process.cwd()}/Docsets/"
+args.docsetdir = args.docsetdir or path.join(process.cwd(), "Docsets")
 
 mainWindow = null
 
@@ -23,7 +23,7 @@ app.on 'ready', ->
         "web-preferences":
             "direct-write": true
             "overlay-scrollbars": false
-        icon: "#{process.cwd()}/Slash.png"
+        icon: path.join(path.dirname(__dirname), 'Slash.png')
     mainWindow.openDevTools() if args.debug
     mainWindow.loadUrl 'file://' + __dirname + '/../browser/index.html'
 app.on 'window-all-closed', ->
