@@ -55,6 +55,7 @@ S.vm = new Vue
                         name: result.docset.name
                     S.vm.$data.results.push i
             handle.on 'finish', (allData)->
+                return if allData.length < 1
                 return unless allData[0].keyword is S.vm.$data.keyword
                 S.vm.$data.results = []
                 for res in allData

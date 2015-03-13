@@ -42,17 +42,31 @@ class module.exports extends require('events').EventEmitter
         getDocsets()
         .then (docsets)->
             promises = []
-            isGlob = false
-            if that.keyword.indexOf('?') >= 0 or that.keyword.indexOf('*') >= 0
+            limitDocset = isGlob = false
+            keyword = that.keyword
+            if keyword.indexOf(':') >= 0
+                console.log 'limited docsets'
+                matches = that.keyword.match(/^(.*):(.*)$/)
+                limitDocset = matches[1]
+                    .replace /([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1"
+                    .replace /\\\\?/g, '.'
+                    .replace /\\\\*/g, '.*'
+                limitDocset = new RegExp limitDocset, 'i'
+                console.log "Limited Docset: #{limitDocset}"
+                keyword = matches[2]
+            if keyword.indexOf('?') >= 0 or keyword.indexOf('*') >= 0
                 console.log 'isGlob'
                 isGlob = true
             for method in ['matchExactly', 'matchHead', 'matchTail', 'matchMiddle', 'matchDeep']
                 for docset in docsets
+                    if limitDocset and !docset.meta.CFBundleName.match limitDocset
+                        console.log 'skipped: ' + docset.name
+                        continue
                     do (method, docset)->
                         promises.push(new Promise (resolve)->
                             if isGlob
-                                return resolve docset.db[method](that.keyword, config.maxItem)
-                            resolve docset.db[method](that.keyword)
+                                return resolve docset.db[method](keyword, config.maxItem)
+                            resolve docset.db[method](keyword)
                         .catch (e)->
                             console.log "Error when accessing docset #{docset.name}."
                             console.log e
