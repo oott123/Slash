@@ -14,6 +14,10 @@ class module.exports
     s: ->
         @k('searchIndex')
     nameLike: (match, limit = config.maxItem / 2)->
+        match = match.replace /[%_]/g, '\\$1'
+                     .replace /\?/g, '_'
+                     .replace /\*/g, '%'
+        console.log match
         if @isZDash
             @k.raw '
                 SELECT
@@ -25,10 +29,10 @@ class module.exports
                 JOIN ztokenmetainformation ON ztoken.zmetainformation = ztokenmetainformation.z_pk
                 JOIN zfilepath ON ztokenmetainformation.zfile = zfilepath.z_pk
                 JOIN ztokentype ON ztoken.ztokentype = ztokentype.z_pk
-                WHERE name GLOB ? LIMIT ?
+                WHERE name LIKE ? ESCAPE "\\" COLLATE NOCASE LIMIT ?
                 ', [match, limit]
         else
-            @s().whereRaw('name GLOB ?', match).limit(limit)
+            @s().whereRaw('name LIKE ? ESCAPE "\\" COLLATE NOCASE', match).limit(limit)
     getIndexCount: ->
         if @isZDash
             @k('ztoken').count('ztokenname')
