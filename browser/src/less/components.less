@@ -1,13 +1,16 @@
-.menu{
+.menu-style(){
     -webkit-user-select: none;
-    font-size: 10pt;
     background-color: #FBFCFD;
-    margin: 0 2px 2px;
-    padding: 2px;
     border: 1px solid #DCDDDE;
     box-shadow: #ddd 1px 1px 1px;
-    text-align: left;
     list-style: none;
+    text-align: left;
+    font-size: 10pt;
+    margin: 0 2px 2px;
+    padding: 2px;
+}
+.menu{
+    .menu-style;
     &.popup{
         display: none;
         position: fixed;

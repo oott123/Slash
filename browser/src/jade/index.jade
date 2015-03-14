@@ -52,12 +52,12 @@ html
 				iframe#config(src="config.html" frameborder="0")
 		script#bookmark-template(type="text/x-template")
 			.title
-				.text(v-on="click: toggle") {{title}}
-				.ctrl.add(v-on="click: add")
+				.text.menu-item(v-on="click: toggle") {{title}}
+				.ctrl.menu-item.add(v-on="click: add")
 					i.fa.fa-plus
-				.ctrl.remove(v-on="click: remove" v-if="!isTop")
+				.ctrl.menu-item.remove(v-on="click: remove" v-if="!isTop")
 					i.fa.fa-times
-				.ctrl.edit(v-on="click: edit" v-if="!isTop")
+				.ctrl.menu-item.edit(v-on="click: edit" v-if="!isTop")
 					i.fa.fa-pencil
 				form(v-if="status.isEditing")
 					input(v-model="title")

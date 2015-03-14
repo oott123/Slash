@@ -124,14 +124,32 @@ iframe#config {
 }
 
 .bookmarks {
+	.menu-style;
 	position: absolute;
 	right: 0;
 	min-width: 280px;
 	.text, .ctrl {
 		display: inline-block;
 	}
+	.text {
+		padding-left: 10px;
+	}
 	.ctrl {
+		text-align: center;
+		font-size: 12pt;
 		width: 32px;
-		float: right;
+		height: 32px;
+		line-height: 32px;
+	}
+	.title {
+		display: flex;
+		.text {
+			flex: 1;
+		}
+	}
+	ul {
+		list-style: none;
+		margin: 0;
+		padding-left: 5px;
 	}
 }
