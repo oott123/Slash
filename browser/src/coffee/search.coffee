@@ -25,6 +25,7 @@ S.vm = new Vue
         ]
         webContentSrc: ''
         title: 'Welcome'
+        docset: ''
         keyword: ''
         buttons:
             forward: false
@@ -42,7 +43,7 @@ S.vm = new Vue
             if keyword.match /^https?:\/\//
                 @webContentSrc = keyword
                 return
-            handle = new S.ds keyword
+            handle = new S.ds keyword, @docset
             loadedItems = {}
             processResult =  (result)->
                 lt = loadedItems[result.docset.name] = loadedItems[result.docset.name] or {}

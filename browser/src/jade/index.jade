@@ -9,6 +9,7 @@ html
 		.main-wrapper
 			.title-bar.sub-wrapper
 				.search.left
+					input#docset(type="text" v-model="docset")
 					input#search(type="text" placeholder="Search" autofocus v-on="keyup: lazySearch" v-model="keyword")
 				.nav.right
 					.button-group.left

@@ -36,7 +36,7 @@ getDocsets = (forceUpdate = false)->
         Promise.all(promises)
 class AbortedByUser
 class module.exports extends require('events').EventEmitter
-    constructor: (@keyword)->
+    constructor: (@keyword, @docset)->
     match: ->
         that = this
         getDocsets()
@@ -44,16 +44,13 @@ class module.exports extends require('events').EventEmitter
             promises = []
             limitDocset = isGlob = false
             keyword = that.keyword
-            if keyword.indexOf(':') >= 0
-                console.log 'limited docsets'
-                matches = that.keyword.match(/^(.*):(.*)$/)
-                limitDocset = matches[1]
+            if that.docset
+                limitDocset = that.docset
                     .replace /([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1"
                     .replace /\\\\?/g, '.'
                     .replace /\\\\*/g, '.*'
                 limitDocset = new RegExp limitDocset, 'i'
                 console.log "Limited Docset: #{limitDocset}"
-                keyword = matches[2]
             if keyword.indexOf('?') >= 0 or keyword.indexOf('*') >= 0
                 console.log 'isGlob'
                 isGlob = true

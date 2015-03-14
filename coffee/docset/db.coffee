@@ -14,7 +14,7 @@ class module.exports
     s: ->
         @k('searchIndex')
     nameLike: (match, limit = config.maxItem / 2)->
-        match = match.replace /[%_]/g, '\\$1'
+        match = match.replace /([%_])/g, '\\$1'
                      .replace /\?/g, '_'
                      .replace /\*/g, '%'
         console.log match
