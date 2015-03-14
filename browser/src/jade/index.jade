@@ -55,9 +55,9 @@ html
 				.text(v-on="click: toggle") {{title}}
 				.ctrl.add(v-on="click: add")
 					i.fa.fa-plus
-				.ctrl.remove(v-on="click: remove")
+				.ctrl.remove(v-on="click: remove" v-if="!isTop")
 					i.fa.fa-times
-				.ctrl.edit(v-on="click: edit")
+				.ctrl.edit(v-on="click: edit" v-if="!isTop")
 					i.fa.fa-pencil
 				form(v-if="status.isEditing")
 					input(v-model="title")

@@ -28,6 +28,8 @@ Vue.component 'bookmark',
     computed:
         isFolder: ->
             @subItems?.length
+        isTop: ->
+            @$parent.bookmarks
     methods:
         toggle: ->
             if @isFolder
