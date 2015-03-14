@@ -23,6 +23,7 @@ html
 					.button-group.right
 						.bookmark.button.right(v-class="disabled: !buttons.bookmark")
 							i.fa.fa-bookmark
+							.bookmarks(v-component="bookmark" v-repeat="bookmarks")
 						.bars.button.left(
 							v-class="disabled: !buttons.options"
 							tabindex=1)
@@ -49,5 +50,13 @@ html
 						v-on="did-stop-loading: updateTitle, console-message: message")
 			.cover.config.hidden(v-class="hidden: !isConfigShow")
 				iframe#config(src="config.html" frameborder="0")
+		script#bookmark-template(type="text/x-template")
+			.title
+				.text {{title}}
+				.ctrl.add [+]
+				.ctrl.remove [-]
+				.ctrl.edit [|]
+			ul.submenu
+				li(v-repeat="subItems" v-component="bookmark")
 		script(src="assets/js/common.js")
 		script(src="assets/js/search.js")

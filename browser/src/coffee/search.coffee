@@ -16,6 +16,16 @@ if S.cfg.shortCut
 window.closeConfig = ->
     S.vm.$data.isConfigShow = false
 
+Vue.component 'bookmark',
+    template: '#bookmark-template'
+    data: ->
+        title: 'Dummy Bookmark'
+        url: 'https://github.com/oott123/Slash'
+        subItems: []
+    computed:
+        isFolder: ->
+            @subItems?.length
+
 S.vm = new Vue
     el: 'html'
     data:
@@ -32,6 +42,7 @@ S.vm = new Vue
             bookmark: true
             options: true
         isConfigShow: false
+        bookmarks: S.bookmarks
     methods:
         lazySearch: ->
             # check if ":"

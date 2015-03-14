@@ -6,3 +6,4 @@ remote = require 'remote'
 S.ds = remote.require './docset'
 S.docPort = remote.require('./server/doc-server').docPort
 S.cfg = remote.require('./config').config
+S.bookmarks = remote.require('./bookmark').bookmarks
