@@ -44,7 +44,6 @@ S.vm = new Vue
             _.debounce(this.search, S.cfg.searchDelay).apply(this, arguments)
         search: ->
             keyword = @keyword
-            return if keyword.length < 2
             if keyword.match /^https?:\/\//
                 @webContentSrc = keyword
                 return
