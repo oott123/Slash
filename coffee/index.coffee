@@ -8,7 +8,6 @@ menu = require 'menu'
 tray = require 'tray'
 
 args = require './args'
-# process.chdir args.workdir if args.workdir
 defaultDocPort = args.docport or 33300
 args.docsetdir = args.docsetdir or path.join(process.cwd(), "Docsets")
 
