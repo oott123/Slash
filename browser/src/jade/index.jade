@@ -52,11 +52,17 @@ html
 				iframe#config(src="config.html" frameborder="0")
 		script#bookmark-template(type="text/x-template")
 			.title
-				.text {{title}}
-				.ctrl.add [+]
-				.ctrl.remove [-]
-				.ctrl.edit [|]
-			ul.submenu
+				.text(v-on="click: toggle") {{title}}
+				.ctrl.add(v-on="click: add")
+					i.fa.fa-plus
+				.ctrl.remove(v-on="click: remove")
+					i.fa.fa-times
+				.ctrl.edit(v-on="click: edit")
+					i.fa.fa-pencil
+				form(v-if="status.isEditing")
+					input(v-model="title")
+					input(v-if="!isFolder" v-model="url")
+			ul.submenu(v-if="isFolder && status.isOpen")
 				li(v-repeat="subItems" v-component="bookmark")
 		script(src="assets/js/common.js")
 		script(src="assets/js/search.js")

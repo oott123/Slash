@@ -22,10 +22,36 @@ Vue.component 'bookmark',
         title: 'Dummy Bookmark'
         url: 'https://github.com/oott123/Slash'
         subItems: []
+        status:
+            isEditing: false
+            isOpen: false
     computed:
         isFolder: ->
             @subItems?.length
-
+    methods:
+        toggle: ->
+            if @isFolder
+                @status.isOpen = !@status.isOpen
+            else
+                S.vm.webContentSrc = @url
+        edit: ->
+            @status.isEditing = !@status.isEditing
+        remove: ->
+            if @$parent.subItems?[@$index]
+                @$parent.subItems.splice @$index, 1
+            else if @$parent.bookmarks?[@$index]
+                @$parent.bookmarks.splice @$index, 1
+        add: ->
+            title = S.vm.title
+            url = S.vm.webContentSrc
+            data =
+                title: title
+                url: url
+                status:
+                    isEditing: true
+            @subItems = [] unless @subItems
+            @subItems.push data
+            @status.isOpen = true
 S.vm = new Vue
     el: 'html'
     data:
