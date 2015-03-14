@@ -1,4 +1,7 @@
-module.exports = args = {}
+path = require 'path'
+fs = require 'fs'
+module.exports = args =
+    profiledir: path.join process.cwd(), 'profile'
 shortArgs = {
     'd': 'debug'
 }
@@ -17,3 +20,7 @@ for i in process.argv
         args[matchesLong[1].toLowerCase()] = matchesLong[2]
     else if matchesLongSwitch?.length
         args[matchesLongSwitch[1].toLowerCase()] = true
+try
+    fs.statSync args.profiledir
+catch
+    fs.mkdirSync args.profiledir
