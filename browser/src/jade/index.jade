@@ -62,7 +62,7 @@ html
 				form(v-if="status.isEditing")
 					input(v-model="title")
 					input(v-if="!isFolder" v-model="url")
-			ul.submenu(v-if="isFolder && status.isOpen")
+			ul.submenu(v-if="isTop || (isFolder && status.isOpen)")
 				li(v-repeat="subItems" v-component="bookmark")
 		script(src="assets/js/common.js")
 		script(src="assets/js/search.js")

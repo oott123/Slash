@@ -32,6 +32,7 @@ Vue.component 'bookmark',
             @$parent.bookmarks
     methods:
         toggle: ->
+            return if @isTop
             if @isFolder
                 @status.isOpen = !@status.isOpen
             else

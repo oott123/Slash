@@ -9,15 +9,20 @@ try
 catch
     bookmarks = [
         {
-            title: 'Slash Project'
+            title: 'Bookmarks'
             subItems: [
                 {
-                    title: 'GitHub'
-                    url: 'https://github.com/oott123/Slash'
-                }
-                {
-                    title: 'Issues'
-                    url: 'https://github.com/oott123/Slash/issues'
+                    title: 'Slash Project'
+                    subItems: [
+                        {
+                            title: 'GitHub'
+                            url: 'https://github.com/oott123/Slash'
+                        }
+                        {
+                            title: 'Issues'
+                            url: 'https://github.com/oott123/Slash/issues'
+                        }
+                    ]
                 }
             ]
         }
