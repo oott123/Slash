@@ -112,6 +112,11 @@ $('document').ready ->
         else if e.which is 38
             # up
             next = $('ul#doc-list li.active').prev()
+        else if e.which is 8
+            # backspace
+            if $('#search').val() is ''
+                S.vm.$data.docset = ''
+                $('#docset').val('')
         if next.length
             next.click()
             st = next.parent().parent().scrollTop()
