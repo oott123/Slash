@@ -5,7 +5,7 @@ fs = require 'fs'
 bmkFile = path.join args.profiledir, 'bookmarks.json'
 bookmarks = []
 try
-    bookmarks = fs.readFileSync bmkFile
+    bookmarks = JSON.parse(fs.readFileSync bmkFile)
 catch
     bookmarks = [
         {
@@ -28,5 +28,6 @@ catch
         }
     ]
 exports.bookmarks = bookmarks
-exports.save = ->
+exports.save = (newBmks)->
+    bookmarks = newBmks
     fs.writeFileSync bmkFile, JSON.stringify(bookmarks, null, '\t')

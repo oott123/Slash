@@ -172,6 +172,9 @@ $('document').ready ->
     .blur ->
         return if isEditing(S.vm.bookmarks)
         $('.bookmarks').hide()
+        # save bookmarks
+        bmk = require('remote').require('./bookmark')
+        bmk.save(JSON.parse(JSON.stringify(S.vm.bookmarks)))
 isEditing = (items)->
     for i in items
         return true if i.status?.isEditing
