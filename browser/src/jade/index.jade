@@ -21,12 +21,14 @@ html
 							i.fa.fa-angle-right
 					#doc-title.title {{title}}
 					.button-group.right
-						.bookmark.button.right(v-class="disabled: !buttons.bookmark")
+						.bookmark.button.right(
+							v-class="disabled: !buttons.bookmark"
+							tabindex=1)
 							i.fa.fa-bookmark
-							.bookmarks(v-component="bookmark" v-repeat="bookmarks")
+							.dropdown.bookmarks(v-component="bookmark" v-repeat="bookmarks")
 						.bars.button.left(
 							v-class="disabled: !buttons.options"
-							tabindex=1)
+							tabindex=2)
 							i.fa.fa-bars
 							ul.menu.popup.dropdown
 								li.buttons

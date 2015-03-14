@@ -37,6 +37,7 @@ Vue.component 'bookmark',
                 @status.isOpen = !@status.isOpen
             else
                 S.vm.webContentSrc = @url
+                $('.button.bookmark').blur()
         edit: ->
             @status.isEditing = !@status.isEditing
         remove: ->
