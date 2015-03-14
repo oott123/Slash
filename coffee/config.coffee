@@ -8,7 +8,7 @@ defaultConfig =
     shortCut: 'Alt+Enter'
 configFile = path.join(args.profiledir, 'config.json')
 exports.save = ->
-    fs.writeFileSync configFile, JSON.stringify(exports.config)
+    fs.writeFileSync configFile, JSON.stringify(exports.config, null, '\t')
 
 try
     data = fs.readFileSync configFile
