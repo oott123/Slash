@@ -135,7 +135,11 @@ iframe#config {
 	.text {
 		padding-left: 10px;
 	}
+	.title:hover .ctrl{
+		display: block;
+	}
 	.ctrl {
+		display: none;
 		text-align: center;
 		font-size: 12pt;
 		width: 32px;
@@ -146,6 +150,14 @@ iframe#config {
 		display: flex;
 		.text {
 			flex: 1;
+		}
+	}
+	form {
+		.label {
+			span {
+				display: inline-block;
+				width: 50px;
+			}
 		}
 	}
 	ul {

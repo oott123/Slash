@@ -167,3 +167,14 @@ $('document').ready ->
             return false
     $('.bars .menu.dropdown').click ->
         $('.bars').blur()
+    $('.bookmark.button').focus ->
+        $('.bookmarks').show()
+    .blur ->
+        return if isEditing(S.vm.bookmarks)
+        $('.bookmarks').hide()
+isEditing = (items)->
+    for i in items
+        return true if i.status?.isEditing
+        if i.subItems
+            return true if isEditing i.subItems
+    return false

@@ -25,7 +25,7 @@ html
 							v-class="disabled: !buttons.bookmark"
 							tabindex=1)
 							i.fa.fa-bookmark
-							.dropdown.bookmarks(v-component="bookmark" v-repeat="bookmarks")
+							.bookmarks(v-component="bookmark" v-repeat="bookmarks")
 						.bars.button.left(
 							v-class="disabled: !buttons.options"
 							tabindex=2)
@@ -61,9 +61,13 @@ html
 					i.fa.fa-times
 				.ctrl.menu-item.edit(v-on="click: edit" v-if="!isTop")
 					i.fa.fa-pencil
-				form(v-if="status.isEditing")
+			form(v-if="status.isEditing")
+				.label
+					span Title
 					input(v-model="title")
-					input(v-if="!isFolder" v-model="url")
+				.label(v-if="!isFolder")
+					span Url
+					input(v-model="url")
 			ul.submenu(v-if="isTop || (isFolder && status.isOpen)")
 				li(v-repeat="subItems" v-component="bookmark")
 		script(src="assets/js/common.js")
