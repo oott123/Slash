@@ -34,6 +34,13 @@ S.vm = new Vue
         isConfigShow: false
     methods:
         lazySearch: ->
+            # check if ":"
+            if matches = @keyword.match /^(.*):(.*)$/
+                $('#search').val(matches[2]) # changing @keyword won't works
+                @docset = matches[1]
+            # check if ";"
+            if @keyword.match /;/
+                $('#search').val('')
             _.debounce(this.search, S.cfg.searchDelay).apply(this, arguments)
         search: ->
             keyword = @keyword
