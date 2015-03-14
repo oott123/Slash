@@ -36,7 +36,8 @@ Vue.component 'bookmark',
             if @isFolder
                 @status.isOpen = !@status.isOpen
             else
-                S.vm.webContentSrc = @url
+                url = @url.replace 'slash://', "http://localhost:#{S.docPort}/"
+                S.vm.webContentSrc = url
                 $('.button.bookmark').blur()
         edit: ->
             @status.isEditing = !@status.isEditing
@@ -47,7 +48,7 @@ Vue.component 'bookmark',
                 @$parent.bookmarks.splice @$index, 1
         add: ->
             title = S.vm.title
-            url = S.vm.webContentSrc
+            url = S.vm.webContentSrc.replace "http://localhost:#{S.docPort}/", 'slash://'
             data =
                 title: title
                 url: url
