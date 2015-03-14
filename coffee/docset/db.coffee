@@ -17,7 +17,6 @@ class module.exports
         match = match.replace /([%_])/g, '\\$1'
                      .replace /\?/g, '_'
                      .replace /\*/g, '%'
-        console.log match
         if @isZDash
             @k.raw '
                 SELECT

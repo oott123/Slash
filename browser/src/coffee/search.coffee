@@ -2,7 +2,6 @@ remote = require 'remote'
 _ = require 'lodash'
 
 docSetDir = remote.require('./args').docsetdir.replace(/\\/g, '/')
-console.log docSetDir
 
 # register global shortcut
 if S.cfg.shortCut
@@ -36,8 +35,7 @@ S.vm = new Vue
     methods:
         lazySearch: ->
             _.debounce(this.search, S.cfg.searchDelay).apply(this, arguments)
-        search: (e)->
-            return e.preventDefault() if [40, 38].indexOf(e.which) >= 0
+        search: ->
             keyword = @keyword
             return if keyword.length < 2
             if keyword.match /^https?:\/\//
@@ -97,6 +95,7 @@ S.vm = new Vue
             "url('#{docSetDir}/" +
                 encodeURIComponent(name) +
                 "/icon.png')"
+S.vm.$watch 'docset + keyword', S.vm.lazySearch
 $('document').ready ->
     $('input#search').keydown (e)->
         next = false
