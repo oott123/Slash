@@ -20,7 +20,7 @@ mainWindow = null
 
 app.on 'ready', ->
     new Promise (resolve, reject)->
-        fs.readFile path.join(args.profiledir, 'docsetApi.port'), (err, data)->
+        fs.readFile path.join(args.profiledir, 'api.port'), (err, data)->
             return reject(err) if err
             port = parseInt data
             resolve port
@@ -50,7 +50,7 @@ app.on 'ready', ->
     .then ->
         require('./server/api').run(defaultApiPort)
     .then (apiPort)->
-        fs.writeFileSync path.join(args.profiledir, 'docsetApi.port'), apiPort
+        fs.writeFileSync path.join(args.profiledir, 'api.port'), apiPort
     .then ->
         args.mainWindow = mainWindow = new browserWindow
             width: 1000
