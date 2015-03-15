@@ -16,6 +16,10 @@ createServer = (app, port, resolve, reject)->
         exports.apiPort = port
         resolve(port)
     ).listen(port, 'localhost')
+focus = ->
+    args.mainWindow.minimize()
+    args.mainWindow.focus()
+    args.mainWindow.focusOnWebView()
 exports.run = (port)->
     new Promise (resolve, reject)->
         return resolve exports.apiPort if exports.apiPort
@@ -29,6 +33,11 @@ exports.run = (port)->
             res.reject = (reason, code = 400) ->
                 res.json({error: reason}, code)
             next()
+        app.use '/ping', (req, res)->
+            res.json true
+        app.use '/focus', (req, res)->
+            focus()
+            res.json true
         app.use '/window-search', (req, res)->
             return res.reject 'Missing argument: keyword' unless req.urlParams.query.keyword
             args.mainWindow.webContents.executeJavaScript(
@@ -36,9 +45,7 @@ exports.run = (port)->
             if req.urlParams.query.docset
                 args.mainWindow.webContents.executeJavaScript(
                     "S.vm.$data.docset = #{JSON.stringify(req.urlParams.query.docset)}")
-            args.mainWindow.minimize()
-            args.mainWindow.focus()
-            args.mainWindow.focusOnWebView()
+            focus()
             return res.json(true)
         app.use (req, res)->
             res.reject 'Method Not Found'
