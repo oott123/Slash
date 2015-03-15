@@ -24,6 +24,7 @@ app.on 'ready', ->
             port = parseInt data
             resolve port
     .catch ->
+        # the api.port may not exist
         true
     .then (oldPort)->
         new Promise (resolve, reject)->
