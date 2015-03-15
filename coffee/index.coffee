@@ -63,6 +63,8 @@ app.on 'ready', ->
         mainWindow.loadUrl 'file://' + __dirname + '/../browser/index.html'
 app.on 'window-all-closed', ->
     app.quit()
+app.on 'quit', ->
+    fs.unlinkSync path.join(args.profiledir, 'api.port')
 ipc.on 'showMainWindow', ->
     args.mainWindow.focus()
     args.mainWindow.focusOnWebView()
