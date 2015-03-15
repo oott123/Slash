@@ -30,4 +30,5 @@ app.on 'ready', ->
 app.on 'window-all-closed', ->
     app.quit()
 ipc.on 'showMainWindow', ->
-    mainWindow.show()
+    args.mainWindow.focus()
+    args.mainWindow.focusOnWebView()

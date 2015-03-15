@@ -36,8 +36,9 @@ exports.run = (port)->
             if req.urlParams.query.docset
                 args.mainWindow.webContents.executeJavaScript(
                     "S.vm.$data.docset = #{JSON.stringify(req.urlParams.query.docset)}")
-            args.mainWindow.show()
+            args.mainWindow.minimize()
             args.mainWindow.focus()
+            args.mainWindow.focusOnWebView()
             return res.json(true)
         app.use (req, res)->
             res.reject 'Method Not Found'
