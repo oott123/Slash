@@ -74,6 +74,7 @@ S.vm = new Vue
             options: true
         isConfigShow: false
         bookmarks: S.bookmarks
+        configUrl: 'about:blank'
     methods:
         lazySearch: ->
             # check if ":"
@@ -131,6 +132,7 @@ S.vm = new Vue
         refreshBrowser: (e)->
             $('#web-content')[0].reloadIgnoringCache()
         openConfigWindow: ->
+            @configUrl = 'config.html'
             @isConfigShow = true
         showDocsetStat: ->
             handle = new S.ds()

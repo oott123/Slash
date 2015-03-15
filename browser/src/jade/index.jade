@@ -51,7 +51,7 @@ html
 						v-attr="src: webContentSrc"
 						v-on="did-stop-loading: updateTitle, console-message: message")
 			.cover.config.hidden(v-class="hidden: !isConfigShow")
-				iframe#config(src="config.html" frameborder="0")
+				iframe#config(src="{{configUrl}}" frameborder="0")
 		script#bookmark-template(type="text/x-template")
 			.title
 				.text.menu-item(v-on="click: toggle") {{title}}
