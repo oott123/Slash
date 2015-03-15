@@ -9,14 +9,16 @@ tray = require 'tray'
 
 args = require './args'
 defaultDocPort = args.docport or 33300
+defaultApiPort = args.apiport or 33400
 args.docsetdir = args.docsetdir or path.join(process.cwd(), "Docsets")
 
 mainWindow = null
 
 require('./server/doc-server').run(defaultDocPort, args.docsetdir)
+require('./server/api').run(defaultApiPort)
 
 app.on 'ready', ->
-    mainWindow = new browserWindow
+    args.mainWindow = mainWindow = new browserWindow
         width: 1000
         height: 710
         "web-preferences":
