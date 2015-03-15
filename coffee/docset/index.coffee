@@ -97,3 +97,4 @@ class module.exports extends require('events').EventEmitter
                             data: data
                     )
             Promise.all promises
+module.exports.getDocsets = getDocsets
