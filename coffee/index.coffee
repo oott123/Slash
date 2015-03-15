@@ -14,11 +14,10 @@ defaultDocPort = args.docport or 33300
 defaultApiPort = args.apiport or 33400
 args.docsetdir = args.docsetdir or path.join(process.cwd(), "Docsets")
 
-# check if there is already an Slash is running
 mainWindow = null
 
-
 app.on 'ready', ->
+    # check if Slash is running
     new Promise (resolve, reject)->
         fs.readFile path.join(args.profiledir, 'api.port'), (err, data)->
             return reject(err) if err
@@ -43,8 +42,10 @@ app.on 'ready', ->
             setTimeout ->
                 resolve()
             , 1000
-    .catch ->
+    .catch (e)->
+        # slash is running; focus it and quit self
         app.quit()
+        throw e
     .then ->
         require('./server/doc-server').run(defaultDocPort, args.docsetdir)
     .then ->
@@ -62,9 +63,8 @@ app.on 'ready', ->
         mainWindow.openDevTools() if args.debug
         mainWindow.loadUrl 'file://' + __dirname + '/../browser/index.html'
 app.on 'window-all-closed', ->
-    app.quit()
-app.on 'quit', ->
     fs.unlinkSync path.join(args.profiledir, 'api.port')
+    app.quit()
 ipc.on 'showMainWindow', ->
     args.mainWindow.focus()
     args.mainWindow.focusOnWebView()
