@@ -119,10 +119,14 @@ S.vm = new Vue
                 "/Contents/Resources/Documents/#{item.path}"
             $('ul#doc-list li').removeClass 'active'
             $(e.target).addClass 'active'
-        updateTitle: (e)->
-            @title = e.target.getTitle()
+        contentStartLoading: (e)->
+            @title = 'Loading ...'
+        contentStopLoading: (e)->
+            # update title buttons
             @buttons.backward = e.target.canGoBack()
             @buttons.forward = e.target.canGoForward()
+        contentPageTitleSet: (e)->
+            @title = e.title
         webNav: (i)->
             $('#web-content')[0].goToOffset(i)
         message: (e)->
@@ -175,7 +179,6 @@ $('document').ready ->
             e.preventDefault()
             return false
     $('.menu.dropdown').click (e)->
-        console.log(this, e)
         $(this).parent().blur()
     $('.bookmark.button').focus ->
         $('.bookmarks').show()
