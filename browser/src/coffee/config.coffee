@@ -25,7 +25,7 @@ window.vm = new Vue
             vm.$watch 'configItems', ->
                 @$data.configNotChanged = false
         closeWindow: ->
-            top.closeConfig()
+            window.close()
         saveConfig: ->
             data = {}
             i = 0

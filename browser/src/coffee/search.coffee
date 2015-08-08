@@ -13,9 +13,6 @@ if S.cfg.shortCut
     unless ret
         alert "Failed to register global shortcut #{S.cfg.shortCut}.\nCheck if it was already in use."
 
-window.closeConfig = ->
-    S.vm.$data.isConfigShow = false
-
 Vue.component 'bookmark',
     template: '#bookmark-template'
     data: ->
@@ -72,9 +69,7 @@ S.vm = new Vue
             backward: false
             bookmark: true
             options: true
-        isConfigShow: false
         bookmarks: _.clone(S.bookmarks, true)
-        configUrl: 'about:blank'
         args:
             debug: S.args.debug
     methods:
@@ -138,8 +133,7 @@ S.vm = new Vue
         refreshBrowser: (e)->
             $('#web-content')[0].reloadIgnoringCache()
         openConfigWindow: ->
-            @configUrl = 'config.html'
-            @isConfigShow = true
+            remote.require('./config').showConfigWindow()
         showDocsetStat: ->
             handle = new S.ds()
             handle.stat().then (data)->

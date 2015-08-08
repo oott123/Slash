@@ -2,6 +2,7 @@ args = require './args'
 fs = require 'fs'
 path = require 'path'
 _ = require 'lodash'
+browserWindow = require 'browser-window'
 defaultConfig =
     maxItem: 100
     searchDelay: 300
@@ -15,3 +16,15 @@ try
     exports.config = _.extend(defaultConfig, JSON.parse(data))
 catch e
     exports.config = defaultConfig
+exports.configWindow = null
+exports.showConfigWindow = ->
+    exports.configWindow = new browserWindow
+        width: 600
+        height: 300
+        "web-preferences":
+            "direct-write": true
+            "overlay-scrollbars": false
+        icon: path.join(path.dirname(__dirname), 'Slash.png')
+    exports.configWindow.loadUrl 'file://' + __dirname + '/../browser/config.html'
+exports.closeConfigWindow = ->
+    exports.configWindow.close()
