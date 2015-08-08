@@ -25,8 +25,9 @@ app.on 'ready', ->
             resolve port
     .catch ->
         # the api.port may not exist
-        true
+        false
     .then (oldPort)->
+        resolve() unless oldPort
         new Promise (resolve, reject)->
             options =
                 hostname: 'localhost'
