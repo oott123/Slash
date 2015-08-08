@@ -147,6 +147,7 @@ S.vm = new Vue
                 "/icon.png')"
 S.vm.$watch 'docset + keyword', S.vm.lazySearch
 $('document').ready ->
+    lastBackspace = 0
     $('input#search').keydown (e)->
         next = false
         if e.which is 40
@@ -157,9 +158,10 @@ $('document').ready ->
             next = $('ul#doc-list li.active').prev()
         else if e.which is 8
             # backspace
-            if $('#search').val() is ''
+            if $('#search').val() is '' and Date.now() - lastBackspace > 500
                 S.vm.$data.docset = ''
                 $('#docset').val('')
+            lastBackspace = Date.now()
         if next.length
             next.click()
             st = next.parent().parent().scrollTop()
