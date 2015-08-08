@@ -75,6 +75,7 @@ S.vm = new Vue
         isConfigShow: false
         bookmarks: S.bookmarks
         configUrl: 'about:blank'
+        args: remote.require('./args')
     methods:
         lazySearch: ->
             # check if ":"
@@ -145,6 +146,10 @@ S.vm = new Vue
             "url('#{docSetDir}/" +
                 encodeURIComponent(name) +
                 "/icon.png')"
+        reloadSlash: ->
+            location.reload()
+        toggleDevTools: ->
+            @args.mainWindow.toggleDevTools()
 S.vm.$watch 'docset + keyword', S.vm.lazySearch
 $('document').ready ->
     lastBackspace = 0
@@ -169,8 +174,9 @@ $('document').ready ->
             e.stopPropagation()
             e.preventDefault()
             return false
-    $('.bars .menu.dropdown').click ->
-        $('.bars').blur()
+    $('.menu.dropdown').click (e)->
+        console.log(this, e)
+        $(this).parent().blur()
     $('.bookmark.button').focus ->
         $('.bookmarks').show()
     .blur ->

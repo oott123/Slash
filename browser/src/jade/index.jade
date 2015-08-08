@@ -21,12 +21,12 @@ html
 							i.fa.fa-angle-right
 					#doc-title.title {{title}}
 					.button-group.right
-						.bookmark.button.right(
+						.bookmark.button(
 							v-class="disabled: !buttons.bookmark"
 							tabindex=1)
 							i.fa.fa-bookmark
 							.bookmarks(v-component="bookmark" v-repeat="bookmarks")
-						.bars.button.left(
+						.bars.button(
 							v-class="disabled: !buttons.options"
 							tabindex=2)
 							i.fa.fa-bars
@@ -40,6 +40,11 @@ html
 								li(v-on="click: openConfigWindow") Settings ...
 								li(v-on="click: showDocsetStat") Show Docsets ...
 								li(v-on="click: webContentSrc = 'http://github.com/oott123/slash'") About ...
+						.wrench.button(v-if="args.debug" tabindex=3)
+							i.fa.fa-wrench
+							ul.menu.popup.dropdown
+								li(v-on="click: reloadSlash") Reload Slash
+								li(v-on="click: toggleDevTools") Toggle Dev Tools
 			.body.sub-wrapper
 				.index.left
 					ul#doc-list

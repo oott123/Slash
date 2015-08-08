@@ -61,7 +61,6 @@ app.on 'ready', ->
                 "direct-write": true
                 "overlay-scrollbars": false
             icon: path.join(path.dirname(__dirname), 'Slash.png')
-        mainWindow.openDevTools() if args.debug
         mainWindow.loadUrl 'file://' + __dirname + '/../browser/index.html'
 app.on 'window-all-closed', ->
     fs.unlinkSync path.join(args.profiledir, 'api.port')
