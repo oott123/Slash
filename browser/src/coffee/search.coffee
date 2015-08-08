@@ -73,7 +73,7 @@ S.vm = new Vue
             bookmark: true
             options: true
         isConfigShow: false
-        bookmarks: _.cloneDeep(S.bookmarks)
+        bookmarks: _.clone(S.bookmarks, true)
         configUrl: 'about:blank'
         args:
             debug: S.args.debug
@@ -103,7 +103,7 @@ S.vm = new Vue
                     lt[i.id] = true
                     i.docset =
                         name: result.docset.name
-                    S.vm.$data.results.push _.clone(i)
+                    S.vm.$data.results.push _.clone(i, true)
             handle.on 'finish', (allData)->
                 return if allData.length < 1
                 return unless allData[0].keyword is S.vm.$data.keyword
@@ -188,7 +188,7 @@ $('document').ready ->
         $('.bookmarks').hide()
         # save bookmarks
         bmk = require('remote').require('./bookmark')
-        bmk.save(JSON.parse(JSON.stringify(S.vm.bookmarks)))
+        bmk.save(JSON.stringify(S.vm.bookmarks, null, '\t'))
 isEditing = (items)->
     for i in items
         return true if i.status?.isEditing

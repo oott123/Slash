@@ -6,7 +6,8 @@ bmkFile = path.join args.profiledir, 'bookmarks.json'
 bookmarks = []
 try
     bookmarks = JSON.parse(fs.readFileSync bmkFile)
-catch
+catch err
+    console.error(err)
     bookmarks = [
         {
             title: 'Bookmarks'
@@ -29,5 +30,5 @@ catch
     ]
 exports.bookmarks = bookmarks
 exports.save = (newBmks)->
-    bookmarks = newBmks
-    fs.writeFileSync bmkFile, JSON.stringify(bookmarks, null, '\t')
+    exports.bookmarks = JSON.parse(newBmks)
+    fs.writeFileSync bmkFile, newBmks
