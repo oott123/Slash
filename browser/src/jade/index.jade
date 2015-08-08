@@ -56,8 +56,8 @@ html
 						v-attr="src: webContentSrc"
 						v-on="did-stop-loading: contentStopLoading, " +
 						"did-start-loading: contentStartLoading, " +
-						"page-title-set: contentPageTitleSet" +
-						"console-message: message, ")
+						"page-title-set: contentPageTitleSet, " +
+						"console-message: message")
 			.cover.config.hidden(v-class="hidden: !isConfigShow")
 				iframe#config(src="{{configUrl}}" frameborder="0")
 		script#bookmark-template(type="text/x-template")

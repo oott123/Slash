@@ -9,16 +9,17 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "simple-plist": "0.0.3",
-    "sqlite3": "3.0.10",
-    "knex": "0.7.4",
     "bluebird": "2.9.13",
-    "plist": "1.1.0",
     "connect": "3.3.4",
+    "knex": "0.7.4",
+    "lodash": "3.3.1",
+    "plist": "1.1.0",
     "serve-static": "1.9.1",
-    "lodash": "3.3.1"
+    "simple-plist": "0.0.3",
+    "sqlite3": "3.0.10"
   },
   "devDependencies": {
+    "bower": "1.4.1",
     "should": "5.0.1",
     "mocha": "2.1.0",
     "gulp-clean": "0.3.1",

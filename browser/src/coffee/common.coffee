@@ -10,3 +10,4 @@ S.bookmarks = remote.require('./bookmark').bookmarks
 S.profileDir = remote.require('./args').profiledir
 S.ds.getDocsets().then (docsets)->
     S.docsets = docsets
+S.args = remote.require('./args')

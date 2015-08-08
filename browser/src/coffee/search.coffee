@@ -73,9 +73,10 @@ S.vm = new Vue
             bookmark: true
             options: true
         isConfigShow: false
-        bookmarks: S.bookmarks
+        bookmarks: _.cloneDeep(S.bookmarks)
         configUrl: 'about:blank'
-        args: remote.require('./args')
+        args:
+            debug: S.args.debug
     methods:
         lazySearch: ->
             # check if ":"
@@ -153,7 +154,7 @@ S.vm = new Vue
         reloadSlash: ->
             location.reload()
         toggleDevTools: ->
-            @args.mainWindow.toggleDevTools()
+            S.args.mainWindow.toggleDevTools()
 S.vm.$watch 'docset + keyword', S.vm.lazySearch
 $('document').ready ->
     lastBackspace = 0
