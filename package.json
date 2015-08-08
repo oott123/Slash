@@ -10,7 +10,8 @@
   "license": "MIT",
   "dependencies": {
     "simple-plist": "0.0.3",
-    "node-sqlite3": "0.0.3",
+    "sqlite3": "3.0.10",
+    "knex": "0.7.4",
     "bluebird": "2.9.13",
     "plist": "1.1.0",
     "connect": "3.3.4",
