@@ -61,13 +61,14 @@ html
 			.cover.config.hidden(v-class="hidden: !isConfigShow")
 				iframe#config(src="{{configUrl}}" frameborder="0")
 		script#bookmark-template(type="text/x-template")
-			.title
+			.title(v-class="hover: status.isEditing")
 				.text.menu-item(v-on="click: toggle") {{title}}
 				.ctrl.menu-item.add(v-on="click: add")
 					i.fa.fa-plus
 				.ctrl.menu-item.remove(v-on="click: remove" v-if="!isTop")
 					i.fa.fa-times
-				.ctrl.menu-item.edit(v-on="click: edit" v-if="!isTop")
+				.ctrl.menu-item.edit(v-on="click: edit" v-if="!isTop"
+					v-class="hover: status.isEditing")
 					i.fa.fa-pencil
 			form(v-if="status.isEditing")
 				.label
